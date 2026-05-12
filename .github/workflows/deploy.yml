@@ -35,7 +35,7 @@ jobs:
     name: Gate on CI green
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: lewagon/wait-on-check-action@v1.4.0
         with:
           ref: ${{ github.sha }}
@@ -53,7 +53,7 @@ jobs:
       name: production
       url: https://elite-mgmt-agency.com
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - uses: actions/setup-node@v4
         with:
