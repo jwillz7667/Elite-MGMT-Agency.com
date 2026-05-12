@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: lewagon/wait-on-check-action@v1.4.0
+      - uses: lewagon/wait-on-check-action@v1.7.0
         with:
           ref: ${{ github.sha }}
           running-workflow-name: 'Gate on CI green'
