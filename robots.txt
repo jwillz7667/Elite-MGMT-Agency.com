@@ -1,0 +1,87 @@
+# =============================================================================
+# Elite MGMT Agency · robots.txt
+# Canonical: https://elite-mgmt-agency.com/robots.txt
+# =============================================================================
+# This file controls crawler access. Allow-all by default; we have nothing
+# behind /api/ that benefits from indexing.
+# =============================================================================
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /portal/
+Disallow: /admin/
+Disallow: /*.json$
+Disallow: /*?*utm_
+Disallow: /*?*fbclid
+Disallow: /*?*gclid
+
+# Major crawlers — same policy, declared explicitly to make logs easier to audit
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /portal/
+
+User-agent: Googlebot-Image
+Allow: /assets/img/
+Disallow: /assets/img/social/og-default.jpg
+Disallow: /assets/img/social/og-square.jpg
+
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+Disallow: /portal/
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# Aggressive scrapers and ad-bots we do not want
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+# AI training crawlers — declined by default. If you want your model trained
+# on this site, please reach out: hello@elite-mgmt-agency.com
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# Sitemap
+Sitemap: https://elite-mgmt-agency.com/sitemap.xml
+
+# Host directive — for Yandex et al.
+Host: elite-mgmt-agency.com

@@ -1,0 +1,68 @@
+# =============================================================================
+# Elite MGMT Agency · HTTP headers (Cloudflare Pages / Netlify)
+# =============================================================================
+# Security: HSTS, CSP, X-Frame-Options, Referrer-Policy, Permissions-Policy.
+# Performance: long-cache for /assets/*, short cache for HTML, type assertions.
+# =============================================================================
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  X-XSS-Protection: 0
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: accelerometer=(), ambient-light-sensor=(), autoplay=(self), battery=(), camera=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(self), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(self), usb=(), web-share=(self), xr-spatial-tracking=(), interest-cohort=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self'; manifest-src 'self'; media-src 'self'; worker-src 'self' blob:; upgrade-insecure-requests
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+  X-DNS-Prefetch-Control: on
+  X-Permitted-Cross-Domain-Policies: none
+
+# Image, font, JS, CSS, manifest, icons: 1-year immutable cache.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Favicons at root
+/favicon.ico
+  Cache-Control: public, max-age=2592000
+
+# HTML — short revalidation window so updates ship fast
+/
+  Cache-Control: public, max-age=300, must-revalidate
+  Link: </assets/css/styles.css?v=1>; rel=preload; as=style
+  Link: </assets/img/hero/ava-portrait-1200.avif>; rel=preload; as=image; type=image/avif
+
+/index.html
+  Cache-Control: public, max-age=300, must-revalidate
+
+/404.html
+  Cache-Control: public, max-age=300, must-revalidate
+
+# Crawler / discovery files
+/robots.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=86400
+
+/sitemap.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=86400
+
+/manifest.webmanifest
+  Content-Type: application/manifest+json; charset=utf-8
+  Cache-Control: public, max-age=86400
+
+/browserconfig.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=86400
+
+/humans.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=86400
+
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=3600
+
+/.well-known/security.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=86400

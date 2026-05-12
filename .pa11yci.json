@@ -1,0 +1,35 @@
+{
+  "defaults": {
+    "standard": "WCAG2AA",
+    "runners": ["axe", "htmlcs"],
+    "timeout": 60000,
+    "wait": 1500,
+    "chromeLaunchConfig": {
+      "args": ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"]
+    },
+    "viewport": {
+      "width": 1280,
+      "height": 800,
+      "isMobile": false,
+      "isLandscape": true,
+      "hasTouch": false,
+      "deviceScaleFactor": 1
+    },
+    "ignore": [
+      "WCAG2AA.Principle1.Guideline1_4.1_4_3.G145.Fail",
+      "color-contrast"
+    ],
+    "hideElements": ".cursor-dot, .menu-overlay, .reveal:not(.in)",
+    "reporters": ["cli"]
+  },
+  "urls": [
+    {
+      "url": "http://localhost:4173/index.html",
+      "screenCapture": ".pa11y/home.png"
+    },
+    {
+      "url": "http://localhost:4173/404.html",
+      "screenCapture": ".pa11y/404.png"
+    }
+  ]
+}

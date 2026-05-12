@@ -1,0 +1,107 @@
+# =============================================================================
+# Elite MGMT Agency · Feature request
+# =============================================================================
+
+name: Feature request
+description: Propose a new feature, enhancement, or content addition
+title: "feat: "
+labels: ["enhancement", "triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the suggestion. This template is for **authorized contributors**
+        (Viral Ventures LLC employees, contractors, and partners). External
+        feature requests will be redirected to `hello@elite-mgmt-agency.com`.
+
+  - type: checkboxes
+    id: prerequisites
+    attributes:
+      label: Confirmations
+      options:
+        - label: I searched existing open and closed issues
+          required: true
+        - label: I am an authorized contributor or have an approval to file this
+          required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / opportunity
+      description: What user / business problem does this solve? Be concrete.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: A user-facing description first, then technical notes.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: At least one. "Do nothing" is a valid alternative.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Surface affected
+      multiple: true
+      options:
+        - Hero / above-the-fold
+        - Navigation / menu
+        - Services
+        - Talent gallery
+        - Journal
+        - Pricing
+        - FAQ
+        - Application form
+        - Newsletter
+        - Footer
+        - 404 page
+        - Schema / SEO
+        - Infrastructure / headers / redirects
+        - Build tooling / CI
+        - Documentation
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - "P0 — blocking launch / revenue"
+        - "P1 — important for next release"
+        - "P2 — should ship within the quarter"
+        - "P3 — nice to have"
+    validations:
+      required: true
+
+  - type: textarea
+    id: success
+    attributes:
+      label: Success criteria
+      description: How will we know this worked? Metrics, screenshots, qualitative.
+    validations:
+      required: true
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks / unknowns
+      description: Accessibility, performance, SEO, security implications.
+
+  - type: textarea
+    id: mockups
+    attributes:
+      label: Mockups / references
+      description: Links to Figma, screenshots, or sites that demonstrate the idea.

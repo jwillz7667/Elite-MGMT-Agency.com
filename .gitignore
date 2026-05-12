@@ -1,0 +1,134 @@
+# =============================================================================
+# Elite MGMT Agency · .gitignore
+# =============================================================================
+
+# ----- Dependencies -----
+node_modules/
+.pnp
+.pnp.js
+.yarn/install-state.gz
+jspm_packages/
+
+# ----- Lockfiles for non-npm package managers (we standardize on npm) -----
+yarn.lock
+pnpm-lock.yaml
+bun.lockb
+bun.lock
+
+# ----- Build & cache output -----
+dist/
+build/
+out/
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+.svelte-kit/
+.turbo/
+.eslintcache
+.stylelintcache
+.prettiercache
+*.tsbuildinfo
+
+# ----- Test & audit artifacts -----
+coverage/
+.nyc_output/
+.lighthouseci/
+playwright-report/
+test-results/
+pa11y-results/
+*.lcov
+
+# ----- Logs -----
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+pnpm-debug.log*
+
+# ----- Environment / secrets -----
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+*.p12
+.secrets/
+secrets.json
+
+# ----- Deployment platform metadata -----
+.netlify/
+.vercel/
+.cloudflare/
+.wrangler/
+
+# ----- IDE / Editor -----
+.idea/
+*.swp
+*.swo
+*~
+*.bak
+*.orig
+.history/
+.ionide/
+
+# Keep .vscode/{settings,extensions}.json — ignore everything else
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+
+# JetBrains workspace
+*.iml
+
+# ----- OS artifacts -----
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# ----- Temporary / scratch -----
+tmp/
+temp/
+.tmp/
+scratch/
+*.tmp
+
+# ----- Image processing scratch (raw exports, masters) -----
+*.psd
+*.ai
+*.sketch
+*.fig
+*.afdesign
+*.afphoto
+raw/
+masters/
+
+# ----- Compiled / generated docs -----
+docs/_site/
+site-dist/
+
+# ----- Project-local overrides -----
+local/
+local.config.*
+
+# ----- Design handoff (kept on disk, not committed) -----
+# The original design bundle is large binary content that lives outside the
+# tracked repo. Keep it locally for reference but don't ship it to origin.
+extracted/
+*-handoff.zip
+*.handoff.zip
+
+# ----- Pa11y screenshot output -----
+.pa11y/

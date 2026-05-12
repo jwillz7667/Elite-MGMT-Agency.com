@@ -1,0 +1,37 @@
+# =============================================================================
+# Elite MGMT Agency · URL redirects
+# (Cloudflare Pages / Netlify _redirects format)
+# Format: <from> <to> <status>
+# =============================================================================
+
+# Common typos / legacy paths
+/home          /                 301
+/homepage      /                 301
+/index         /                 301
+/index.html    /                 301
+
+# Apostrophe / capitalization variants of brand keywords
+/Apply         /#apply           301
+/apply         /#apply           301
+/contact       /#contact         301
+/Contact       /#contact         301
+/services      /#services        301
+/Services      /#services        301
+/creators      /#creators        301
+/roster        /#creators        301
+/Roster        /#creators        301
+/results       /#results         301
+/Results       /#results         301
+/journal       /#journal         301
+/Journal       /#journal         301
+/about         /#about           301
+/About         /#about           301
+/faq           /#faq-h           301
+/FAQ           /#faq-h           301
+
+# Trailing-slash normalization is handled by host platform; keep here for sanity.
+/apply/        /#apply           301
+/contact/      /#contact         301
+
+# Catch-all 404 — explicit so the static host doesn't fall back to 200 on /index
+/*             /404.html         404

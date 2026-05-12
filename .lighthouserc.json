@@ -1,0 +1,56 @@
+{
+  "$schema": "https://raw.githubusercontent.com/GoogleChrome/lighthouse-ci/main/docs/configuration.md",
+  "ci": {
+    "collect": {
+      "staticDistDir": ".",
+      "url": [
+        "http://localhost/index.html",
+        "http://localhost/404.html"
+      ],
+      "numberOfRuns": 3,
+      "settings": {
+        "preset": "desktop",
+        "throttlingMethod": "simulate",
+        "skipAudits": [
+          "uses-http2",
+          "is-on-https",
+          "redirects-http",
+          "canonical"
+        ]
+      }
+    },
+    "assert": {
+      "preset": "lighthouse:recommended",
+      "assertions": {
+        "categories:performance": ["error", { "minScore": 0.95 }],
+        "categories:accessibility": ["error", { "minScore": 1.0 }],
+        "categories:best-practices": ["error", { "minScore": 0.95 }],
+        "categories:seo": ["error", { "minScore": 1.0 }],
+        "largest-contentful-paint": ["error", { "maxNumericValue": 1800 }],
+        "cumulative-layout-shift": ["error", { "maxNumericValue": 0.05 }],
+        "total-blocking-time": ["error", { "maxNumericValue": 100 }],
+        "first-contentful-paint": ["error", { "maxNumericValue": 1200 }],
+        "speed-index": ["error", { "maxNumericValue": 2000 }],
+        "interactive": ["error", { "maxNumericValue": 2500 }],
+        "uses-text-compression": "error",
+        "uses-long-cache-ttl": "off",
+        "unused-javascript": ["warn", { "maxNumericValue": 5000 }],
+        "unused-css-rules": ["warn", { "maxNumericValue": 10000 }],
+        "render-blocking-resources": "warn",
+        "color-contrast": "error",
+        "html-has-lang": "error",
+        "image-alt": "error",
+        "meta-description": "error",
+        "document-title": "error",
+        "viewport": "error",
+        "tap-targets": "error",
+        "csp-xss": "warn",
+        "errors-in-console": "error",
+        "no-vulnerable-libraries": "error"
+      }
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}

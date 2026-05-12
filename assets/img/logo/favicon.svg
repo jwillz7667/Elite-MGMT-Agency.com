@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="12" fill="#0A0A0A"/>
+  <text x="32" y="44" font-family="'Instrument Serif', 'Times New Roman', serif" font-size="34" font-style="italic" font-weight="400" text-anchor="middle" fill="#F582B1" letter-spacing="-0.04em">E</text>
+  <text x="32" y="44" font-family="'Instrument Serif', 'Times New Roman', serif" font-size="34" font-weight="400" text-anchor="middle" fill="#F4F0E8" letter-spacing="-0.04em" opacity="0">·</text>
+  <circle cx="48" cy="20" r="3" fill="#F582B1"/>
+</svg>

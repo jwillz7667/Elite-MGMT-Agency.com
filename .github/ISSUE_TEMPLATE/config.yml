@@ -1,0 +1,19 @@
+# =============================================================================
+# Elite MGMT Agency · Issue template chooser
+# Owner: Viral Ventures LLC
+# =============================================================================
+
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/jwillz7667/Elite-MGMT-Agency.com/security/advisories/new
+    about: Report a vulnerability privately. Do NOT open a public issue. See SECURITY.md.
+  - name: Talent application
+    url: https://elite-mgmt-agency.com/#apply
+    about: Apply to join the Elite MGMT roster.
+  - name: Business inquiry
+    url: mailto:hello@elite-mgmt-agency.com
+    about: General questions about the agency. Not a software issue.
+  - name: Engineering contact
+    url: mailto:engineering@viral-ventures-llc.com
+    about: Internal engineering questions for Viral Ventures LLC staff.

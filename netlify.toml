@@ -1,0 +1,143 @@
+# =============================================================================
+# Elite MGMT Agency · Netlify configuration
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+# =============================================================================
+
+[build]
+  publish    = "."
+  command    = ""           # static site — no build step
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# -----------------------------------------------------------------------------
+# Asset processing
+# -----------------------------------------------------------------------------
+[build.processing]
+  skip_processing = false
+[build.processing.html]
+  pretty_urls = true
+[build.processing.css]
+  bundle  = false
+  minify  = false           # already minified by hand
+[build.processing.js]
+  bundle  = false
+  minify  = false
+[build.processing.images]
+  compress = false          # already AVIF/WebP optimized
+
+# -----------------------------------------------------------------------------
+# Custom 404 — Netlify auto-serves /404.html for unknown paths
+# -----------------------------------------------------------------------------
+[[redirects]]
+  from   = "/home"
+  to     = "/"
+  status = 301
+
+[[redirects]]
+  from   = "/index"
+  to     = "/"
+  status = 301
+
+[[redirects]]
+  from   = "/index.html"
+  to     = "/"
+  status = 301
+
+[[redirects]]
+  from   = "/apply"
+  to     = "/#apply"
+  status = 301
+
+[[redirects]]
+  from   = "/contact"
+  to     = "/#contact"
+  status = 301
+
+[[redirects]]
+  from   = "/services"
+  to     = "/#services"
+  status = 301
+
+[[redirects]]
+  from   = "/creators"
+  to     = "/#creators"
+  status = 301
+
+[[redirects]]
+  from   = "/roster"
+  to     = "/#creators"
+  status = 301
+
+[[redirects]]
+  from   = "/results"
+  to     = "/#results"
+  status = 301
+
+[[redirects]]
+  from   = "/journal"
+  to     = "/#journal"
+  status = 301
+
+[[redirects]]
+  from   = "/about"
+  to     = "/#about"
+  status = 301
+
+# -----------------------------------------------------------------------------
+# Security & cache headers
+# -----------------------------------------------------------------------------
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options          = "nosniff"
+    X-Frame-Options                 = "DENY"
+    X-XSS-Protection                = "0"
+    Referrer-Policy                 = "strict-origin-when-cross-origin"
+    Permissions-Policy              = "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()"
+    Strict-Transport-Security       = "max-age=63072000; includeSubDomains; preload"
+    Content-Security-Policy         = "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self'; manifest-src 'self'; media-src 'self'; worker-src 'self' blob:; upgrade-insecure-requests"
+    Cross-Origin-Opener-Policy      = "same-origin"
+    Cross-Origin-Resource-Policy    = "same-origin"
+    X-DNS-Prefetch-Control          = "on"
+    X-Permitted-Cross-Domain-Policies = "none"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/favicon.ico"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Content-Type  = "text/plain; charset=utf-8"
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type  = "application/xml; charset=utf-8"
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/manifest.webmanifest"
+  [headers.values]
+    Content-Type  = "application/manifest+json; charset=utf-8"
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/llms.txt"
+  [headers.values]
+    Content-Type  = "text/plain; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/.well-known/security.txt"
+  [headers.values]
+    Content-Type  = "text/plain; charset=utf-8"
+    Cache-Control = "public, max-age=86400"

@@ -1,0 +1,57 @@
+# =============================================================================
+# Elite MGMT Agency · CODEOWNERS
+#
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-security/customizing-your-repository/about-code-owners
+#
+# The repository is owned by jwillz7667 on behalf of Viral Ventures LLC.
+# When the company organization is provisioned and teams are created
+# (`@viral-ventures-llc/engineering`, `/security`, `/legal`, `/design`,
+# `/brand`, `/marketing`, `/devops`), replace `@jwillz7667` below with the
+# appropriate team handles.
+#
+# Order matters: the LAST matching pattern wins.
+# =============================================================================
+
+# Default — every file
+*                               @jwillz7667
+
+# Content / brand
+/index.html                     @jwillz7667
+/404.html                       @jwillz7667
+/llms.txt                       @jwillz7667
+/humans.txt                     @jwillz7667
+
+# Design system / assets
+/assets/css/**                  @jwillz7667
+/assets/js/**                   @jwillz7667
+/assets/img/**                  @jwillz7667
+
+# SEO / discoverability
+/robots.txt                     @jwillz7667
+/sitemap.xml                    @jwillz7667
+/manifest.webmanifest           @jwillz7667
+
+# Infrastructure / deploy
+/_headers                       @jwillz7667
+/_redirects                     @jwillz7667
+/netlify.toml                   @jwillz7667
+/vercel.json                    @jwillz7667
+/.github/workflows/**           @jwillz7667
+
+# Security / compliance
+/.well-known/**                 @jwillz7667
+/SECURITY.md                    @jwillz7667
+/LICENSE                        @jwillz7667
+/CHANGELOG.md                   @jwillz7667
+
+# Build / tooling
+/package.json                   @jwillz7667
+/package-lock.json              @jwillz7667
+/.nvmrc                         @jwillz7667
+/.prettierrc.json               @jwillz7667
+/.stylelintrc.json              @jwillz7667
+/eslint.config.mjs              @jwillz7667
+/.htmlvalidate.json             @jwillz7667
+/.lighthouserc.json             @jwillz7667
+/.pa11yci.json                  @jwillz7667
+/scripts/**                     @jwillz7667

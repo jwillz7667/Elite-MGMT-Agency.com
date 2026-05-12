@@ -1,0 +1,140 @@
+# =============================================================================
+# Elite MGMT Agency · Bug report
+# =============================================================================
+
+name: Bug report
+description: Report a defect in the website (rendering, behavior, accessibility, performance)
+title: "bug: "
+labels: ["bug", "triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting an issue with **elite-mgmt-agency.com**.
+
+        Before filing, please confirm:
+        - This is **not** a security issue. Security vulnerabilities go through
+          private disclosure — see [SECURITY.md](../blob/main/SECURITY.md).
+        - You are reporting a software bug, not a business / brand / contractual
+          question. Those go to `hello@elite-mgmt-agency.com`.
+
+  - type: checkboxes
+    id: prerequisites
+    attributes:
+      label: Confirmations
+      options:
+        - label: This is not a security vulnerability
+          required: true
+        - label: I searched existing open and closed issues
+          required: true
+        - label: I can reproduce this on the current production deploy
+          required: true
+
+  - type: input
+    id: page
+    attributes:
+      label: Page / URL
+      description: The page where the bug occurs.
+      placeholder: https://elite-mgmt-agency.com/
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: One paragraph. What's broken?
+      placeholder: The talent filter tabs do not respond to arrow keys.
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: Numbered, exact.
+      value: |
+        1. Go to '...'
+        2. Click '...'
+        3. Scroll to '...'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: Browsers affected
+      multiple: true
+      options:
+        - Chrome (desktop)
+        - Chrome (Android)
+        - Safari (macOS)
+        - Safari (iOS)
+        - Firefox (desktop)
+        - Firefox (Android)
+        - Edge
+        - Other (specify below)
+    validations:
+      required: true
+
+  - type: input
+    id: browser-version
+    attributes:
+      label: Exact browser / OS version
+      placeholder: Chrome 142.0.7339.207 on macOS 26.4
+    validations:
+      required: true
+
+  - type: dropdown
+    id: device
+    attributes:
+      label: Device class
+      options:
+        - Desktop / laptop
+        - Tablet
+        - Phone
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - "S1 — site unusable / data loss"
+        - "S2 — major feature broken, workaround exists"
+        - "S3 — minor visual / behavioral defect"
+        - "S4 — cosmetic"
+    validations:
+      required: true
+
+  - type: textarea
+    id: console
+    attributes:
+      label: Console output
+      description: Paste any console errors or warnings. Use ``` fences.
+      render: text
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots / recording
+      description: Drag images or video here. Before/after if relevant.

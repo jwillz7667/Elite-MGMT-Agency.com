@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json.schemastore.org/prettierrc.json",
+  "printWidth": 100,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": true,
+  "quoteProps": "consistent",
+  "trailingComma": "es5",
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "arrowParens": "always",
+  "endOfLine": "lf",
+  "htmlWhitespaceSensitivity": "css",
+  "embeddedLanguageFormatting": "auto",
+  "proseWrap": "preserve",
+  "overrides": [
+    {
+      "files": ["*.html", "*.htm"],
+      "options": {
+        "printWidth": 200,
+        "htmlWhitespaceSensitivity": "css",
+        "singleAttributePerLine": false
+      }
+    },
+    {
+      "files": ["*.css"],
+      "options": {
+        "printWidth": 120,
+        "singleQuote": false
+      }
+    },
+    {
+      "files": ["*.md"],
+      "options": {
+        "printWidth": 100,
+        "proseWrap": "preserve"
+      }
+    },
+    {
+      "files": ["*.{json,jsonc,webmanifest}"],
+      "options": {
+        "printWidth": 120,
+        "trailingComma": "none"
+      }
+    },
+    {
+      "files": ["*.{yml,yaml}"],
+      "options": {
+        "singleQuote": false,
+        "tabWidth": 2
+      }
+    },
+    {
+      "files": ["*.svg"],
+      "options": {
+        "parser": "html",
+        "printWidth": 200
+      }
+    }
+  ]
+}

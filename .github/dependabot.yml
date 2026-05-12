@@ -1,0 +1,65 @@
+# =============================================================================
+# Elite MGMT Agency · Dependabot
+#
+# https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+#
+# Owner: Viral Ventures LLC
+# =============================================================================
+
+version: 2
+
+updates:
+  # npm devDependencies (Prettier, ESLint, stylelint, etc.)
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: "America/Chicago"
+    open-pull-requests-limit: 5
+    versioning-strategy: increase
+    labels:
+      - dependencies
+      - npm
+    commit-message:
+      prefix: chore
+      prefix-development: chore
+      include: scope
+    groups:
+      linters:
+        patterns:
+          - "eslint*"
+          - "stylelint*"
+          - "html-validate"
+          - "prettier"
+      audits:
+        patterns:
+          - "@lhci/*"
+          - "pa11y*"
+      tooling:
+        patterns:
+          - "husky"
+          - "lint-staged"
+          - "rimraf"
+          - "serve"
+    reviewers:
+      - jwillz7667
+
+  # GitHub Actions in /.github/workflows
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: "America/Chicago"
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - github-actions
+    commit-message:
+      prefix: ci
+      include: scope
+    reviewers:
+      - jwillz7667

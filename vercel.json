@@ -1,0 +1,84 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/home",        "destination": "/",          "permanent": true },
+    { "source": "/index",       "destination": "/",          "permanent": true },
+    { "source": "/index.html",  "destination": "/",          "permanent": true },
+    { "source": "/apply",       "destination": "/#apply",    "permanent": true },
+    { "source": "/contact",     "destination": "/#contact",  "permanent": true },
+    { "source": "/services",    "destination": "/#services", "permanent": true },
+    { "source": "/creators",    "destination": "/#creators", "permanent": true },
+    { "source": "/roster",      "destination": "/#creators", "permanent": true },
+    { "source": "/results",     "destination": "/#results",  "permanent": true },
+    { "source": "/journal",     "destination": "/#journal",  "permanent": true },
+    { "source": "/about",       "destination": "/#about",    "permanent": true },
+    { "source": "/faq",         "destination": "/#faq-h",    "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options",            "value": "nosniff" },
+        { "key": "X-Frame-Options",                   "value": "DENY" },
+        { "key": "X-XSS-Protection",                  "value": "0" },
+        { "key": "Referrer-Policy",                   "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy",                "value": "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()" },
+        { "key": "Strict-Transport-Security",         "value": "max-age=63072000; includeSubDomains; preload" },
+        { "key": "Content-Security-Policy",           "value": "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self'; manifest-src 'self'; media-src 'self'; worker-src 'self' blob:; upgrade-insecure-requests" },
+        { "key": "Cross-Origin-Opener-Policy",        "value": "same-origin" },
+        { "key": "Cross-Origin-Resource-Policy",      "value": "same-origin" },
+        { "key": "X-DNS-Prefetch-Control",            "value": "on" },
+        { "key": "X-Permitted-Cross-Domain-Policies", "value": "none" }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/favicon.ico",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=2592000" }
+      ]
+    },
+    {
+      "source": "/robots.txt",
+      "headers": [
+        { "key": "Content-Type",  "value": "text/plain; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=86400" }
+      ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        { "key": "Content-Type",  "value": "application/xml; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=86400" }
+      ]
+    },
+    {
+      "source": "/manifest.webmanifest",
+      "headers": [
+        { "key": "Content-Type",  "value": "application/manifest+json; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=86400" }
+      ]
+    },
+    {
+      "source": "/llms.txt",
+      "headers": [
+        { "key": "Content-Type",  "value": "text/plain; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    },
+    {
+      "source": "/.well-known/security.txt",
+      "headers": [
+        { "key": "Content-Type",  "value": "text/plain; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=86400" }
+      ]
+    }
+  ]
+}

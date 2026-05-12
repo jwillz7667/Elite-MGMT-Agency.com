@@ -1,0 +1,26 @@
+# humanstxt.org · https://humanstxt.org/
+
+/* TEAM */
+
+  The Partners        — Elite MGMT Agency
+  Site:                 elite-mgmt-agency.com
+  Location:             New York, NY · 11 Mercer St · 4F
+  Email:                hello@elite-mgmt-agency.com
+
+/* CREATORS */
+
+  We work with 42 women on the roster. We do not publish their names.
+  They publish their own. We just keep the trains running.
+
+/* THANKS */
+
+  To every creator who trusted us with the work. You are the agency.
+
+/* SITE */
+
+  Last update:          2026/05/11
+  Standards:            HTML5, CSS3, ES2020, JSON-LD, Open Graph, Twitter Cards
+  Components:           Vanilla — no frameworks, no trackers, no third-party JS
+  Software:             Built by hand. Tested in Chrome, Safari, Firefox, Edge.
+  Hosting:              Static · global CDN
+  Performance budget:   LCP < 1.8s · CLS < 0.05 · TBT < 100ms

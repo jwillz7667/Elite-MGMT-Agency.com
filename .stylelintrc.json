@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json.schemastore.org/stylelintrc.json",
+  "extends": ["stylelint-config-standard"],
+  "rules": {
+    "selector-class-pattern": null,
+    "selector-id-pattern": null,
+    "keyframes-name-pattern": null,
+    "custom-property-pattern": null,
+    "comment-empty-line-before": null,
+    "declaration-empty-line-before": null,
+    "no-descending-specificity": null,
+    "alpha-value-notation": "number",
+    "color-function-notation": "modern",
+    "hue-degree-notation": "angle",
+    "media-feature-range-notation": "prefix",
+    "shorthand-property-no-redundant-values": true,
+    "declaration-block-no-redundant-longhand-properties": null,
+    "value-keyword-case": ["lower", { "ignoreKeywords": ["currentColor", "Canvas", "CanvasText", "ButtonText", "Highlight", "HighlightText"] }],
+    "function-no-unknown": [
+      true,
+      { "ignoreFunctions": ["theme", "screen", "round"] }
+    ],
+    "property-no-unknown": [
+      true,
+      {
+        "ignoreProperties": ["text-wrap", "overflow-anchor", "scrollbar-width", "scrollbar-color", "content-visibility", "container-type", "container-name", "anchor-name", "position-anchor"]
+      }
+    ],
+    "at-rule-no-unknown": [
+      true,
+      { "ignoreAtRules": ["supports", "container", "layer", "scope", "starting-style"] }
+    ],
+    "media-feature-name-no-unknown": [
+      true,
+      {
+        "ignoreMediaFeatureNames": ["hover", "pointer", "any-hover", "any-pointer", "color-gamut", "dynamic-range", "video-dynamic-range", "forced-colors", "prefers-contrast", "prefers-reduced-motion", "prefers-reduced-transparency", "prefers-reduced-data"]
+      }
+    ],
+    "selector-pseudo-class-no-unknown": [
+      true,
+      { "ignorePseudoClasses": ["focus-visible", "is", "where", "has", "user-invalid"] }
+    ],
+    "no-empty-source": null,
+    "no-duplicate-selectors": null,
+    "rule-empty-line-before": null,
+    "block-no-empty": null,
+    "selector-not-notation": "complex",
+    "selector-attribute-quotes": "always",
+    "string-quotes": null
+  },
+  "ignoreFiles": ["node_modules/**/*", "dist/**/*", "extracted/**/*"]
+}

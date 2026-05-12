@@ -1,0 +1,110 @@
+# =============================================================================
+# Elite MGMT Agency · .gitattributes
+# Cross-platform line-ending normalization + binary detection + diff hygiene.
+# =============================================================================
+
+# Default: auto-detect text, normalize to LF in repo, native on checkout.
+* text=auto eol=lf
+
+# ----- Text files (force LF) -----
+*.html        text eol=lf
+*.htm         text eol=lf
+*.css         text eol=lf
+*.scss        text eol=lf
+*.js          text eol=lf
+*.mjs         text eol=lf
+*.cjs         text eol=lf
+*.json        text eol=lf
+*.jsonc       text eol=lf
+*.md          text eol=lf
+*.yml         text eol=lf
+*.yaml        text eol=lf
+*.toml        text eol=lf
+*.xml         text eol=lf
+*.svg         text eol=lf
+*.txt         text eol=lf
+*.webmanifest text eol=lf
+
+# Files without extensions that should be treated as text
+LICENSE       text eol=lf
+README        text eol=lf
+CHANGELOG     text eol=lf
+CONTRIBUTING  text eol=lf
+SECURITY      text eol=lf
+CODEOWNERS    text eol=lf
+Makefile      text eol=lf
+_headers      text eol=lf
+_redirects    text eol=lf
+
+# Shell scripts: force LF (would break on Windows checkout otherwise)
+*.sh          text eol=lf
+*.bash        text eol=lf
+*.zsh         text eol=lf
+
+# Windows-only scripts: force CRLF
+*.bat         text eol=crlf
+*.cmd         text eol=crlf
+*.ps1         text eol=crlf
+
+# ----- Binary files (no diff, no merge munging) -----
+*.png         binary
+*.jpg         binary
+*.jpeg        binary
+*.gif         binary
+*.webp        binary
+*.avif        binary
+*.ico         binary
+*.bmp         binary
+*.tiff        binary
+*.heic        binary
+*.heif        binary
+*.pdf         binary
+*.woff        binary
+*.woff2       binary
+*.ttf         binary
+*.otf         binary
+*.eot         binary
+*.mp3         binary
+*.mp4         binary
+*.webm        binary
+*.mov         binary
+*.zip         binary
+*.gz          binary
+*.tar         binary
+*.7z          binary
+*.psd         binary
+*.ai          binary
+*.sketch      binary
+*.fig         binary
+
+# ----- Diff hygiene -----
+# Lockfiles should diff but not eat reviewer attention
+package-lock.json  -diff merge=ours linguist-generated=true
+yarn.lock          -diff merge=ours linguist-generated=true
+pnpm-lock.yaml     -diff merge=ours linguist-generated=true
+
+# Hide minified assets from diffs / language stats
+*.min.css          -diff linguist-generated=true
+*.min.js           -diff linguist-generated=true
+
+# Mark generated docs as such for linguist
+CHANGELOG.md       linguist-generated=false
+LICENSE            linguist-detectable=false
+
+# ----- Export-ignore (for archive / GitHub source download) -----
+.github/           export-ignore
+.vscode/           export-ignore
+.gitignore         export-ignore
+.gitattributes     export-ignore
+.editorconfig      export-ignore
+.nvmrc             export-ignore
+.prettierrc.json   export-ignore
+.prettierignore    export-ignore
+.stylelintrc.json  export-ignore
+eslint.config.mjs  export-ignore
+.htmlvalidate.json export-ignore
+.lighthouserc.json export-ignore
+CONTRIBUTING.md    export-ignore
+CHANGELOG.md       export-ignore
+SECURITY.md        export-ignore
+Makefile           export-ignore

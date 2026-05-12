@@ -1,0 +1,44 @@
+# =============================================================================
+# Elite MGMT Agency · .editorconfig
+# https://editorconfig.org
+# Cross-editor formatting baseline. Prettier still owns formatting — this is
+# the floor that prevents tab-vs-space drift in raw editors.
+# =============================================================================
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true
+max_line_length = 120
+
+[*.{md,markdown}]
+trim_trailing_whitespace = false
+max_line_length = off
+
+[Makefile]
+indent_style = tab
+
+[*.{yml,yaml}]
+indent_size = 2
+
+[*.{html,htm}]
+indent_size = 2
+max_line_length = off
+
+[*.{css,js,mjs,cjs,ts,tsx,json,jsonc}]
+indent_size = 2
+
+[*.{svg,xml}]
+indent_size = 2
+max_line_length = off
+
+[{package.json,package-lock.json,manifest.webmanifest}]
+indent_size = 2
+
+[*.{txt,webmanifest}]
+max_line_length = off

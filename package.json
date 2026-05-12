@@ -1,0 +1,96 @@
+{
+  "name": "elite-mgmt-agency-web",
+  "version": "1.0.0",
+  "description": "Production website for Elite MGMT Agency — a women-only creator management agency. Static HTML/CSS/JS, no build step.",
+  "private": true,
+  "license": "SEE LICENSE IN ./LICENSE",
+  "homepage": "https://elite-mgmt-agency.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jwillz7667/Elite-MGMT-Agency.com.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jwillz7667/Elite-MGMT-Agency.com/issues",
+    "email": "engineering@viral-ventures-llc.com"
+  },
+  "author": {
+    "name": "Viral Ventures LLC",
+    "email": "engineering@viral-ventures-llc.com",
+    "url": "https://viral-ventures-llc.com"
+  },
+  "engines": {
+    "node": ">=20",
+    "npm": ">=10"
+  },
+  "packageManager": "npm@10.8.2",
+  "scripts": {
+    "dev": "serve . --listen 4173 --no-clipboard --single",
+    "preview": "serve . --listen tcp://0.0.0.0:4173 --no-clipboard --single",
+
+    "format": "prettier --write \"**/*.{html,css,js,mjs,json,md,yml,yaml,xml,svg,webmanifest}\"",
+    "format:check": "prettier --check \"**/*.{html,css,js,mjs,json,md,yml,yaml,xml,svg,webmanifest}\"",
+
+    "lint": "npm run lint:html && npm run lint:css && npm run lint:js",
+    "lint:html": "html-validate \"index.html\" \"404.html\"",
+    "lint:css": "stylelint \"assets/css/**/*.css\"",
+    "lint:js": "eslint \"assets/js/**/*.js\"",
+
+    "validate": "node ./scripts/validate.mjs",
+
+    "audit:a11y": "pa11y-ci --config .pa11yci.json",
+    "audit:perf": "lhci autorun --config=.lighthouserc.json",
+    "audit": "npm run lint && npm run validate && npm run audit:a11y && npm run audit:perf",
+
+    "check": "npm run format:check && npm run lint && npm run validate",
+
+    "clean": "rimraf .lighthouseci pa11y-results .stylelintcache .eslintcache .prettiercache",
+
+    "prepare": "husky || true"
+  },
+  "devDependencies": {
+    "@lhci/cli": "^0.14.0",
+    "eslint": "^9.18.0",
+    "html-validate": "^9.3.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.0",
+    "pa11y-ci": "^4.0.0",
+    "prettier": "^3.4.0",
+    "rimraf": "^6.0.1",
+    "serve": "^14.2.4",
+    "stylelint": "^16.13.0",
+    "stylelint-config-standard": "^36.0.1"
+  },
+  "lint-staged": {
+    "*.{html,css,js,mjs,json,md,yml,yaml,xml,svg,webmanifest}": [
+      "prettier --write"
+    ],
+    "*.css": [
+      "stylelint --fix"
+    ],
+    "*.js": [
+      "eslint --fix"
+    ],
+    "*.html": [
+      "html-validate"
+    ]
+  },
+  "browserslist": [
+    "last 2 Chrome versions",
+    "last 2 Firefox versions",
+    "last 2 Safari versions",
+    "last 2 Edge versions",
+    "last 2 iOS versions",
+    "last 2 ChromeAndroid versions",
+    "not dead"
+  ],
+  "keywords": [
+    "elite-mgmt",
+    "creator-management",
+    "static-site",
+    "html",
+    "css",
+    "javascript",
+    "seo",
+    "viral-ventures"
+  ]
+}

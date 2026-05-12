@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
+                      http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
+
+  <url>
+    <loc>https://elite-mgmt-agency.com/</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en"        href="https://elite-mgmt-agency.com/"/>
+    <xhtml:link rel="alternate" hreflang="en-us"     href="https://elite-mgmt-agency.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://elite-mgmt-agency.com/"/>
+    <image:image>
+      <image:loc>https://elite-mgmt-agency.com/assets/img/hero/ava-portrait-1600.jpg</image:loc>
+      <image:title>Elite MGMT Agency — featured roster creator, Lifestyle track</image:title>
+      <image:caption>Elite MGMT roster creator Ava L. — Lifestyle, signed 2023, reached top 0.5% within 11 months.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://elite-mgmt-agency.com/assets/img/hero/retreat-1600.jpg</image:loc>
+      <image:title>Annual Elite MGMT roster retreat, 2026</image:title>
+      <image:caption>Selected case study — annual retreat for top performers on the Elite MGMT roster.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://elite-mgmt-agency.com/assets/img/creators/glamour-noor-1200.png</image:loc>
+      <image:title>Elite MGMT roster creator — Glamour track</image:title>
+      <image:caption>Top 0.1% Glamour creator on the Elite MGMT roster, signed 2022.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://elite-mgmt-agency.com/assets/img/creators/fitness-camila-1200.png</image:loc>
+      <image:title>Elite MGMT roster creator — Fitness track</image:title>
+      <image:caption>Fitness creator Camila R. on the Elite MGMT roster, signed 2022.</image:caption>
+    </image:image>
+  </url>
+
+</urlset>
