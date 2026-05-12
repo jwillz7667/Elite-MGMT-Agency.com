@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0A0A0A">
+  <meta name="format-detection" content="telephone=no, address=no, email=no">
+
+  <title>Creator Portal · Elite MGMT Agency (Sign In)</title>
+  <meta name="description" content="Sign in to the Elite MGMT creator portal — secure operations hub for active creators on the roster. Invite-only access.">
+  <link rel="canonical" href="https://elite-mgmt-agency.com/portal/">
+
+  <meta name="author" content="Elite MGMT Agency">
+  <meta name="publisher" content="Elite MGMT Agency, Inc.">
+  <meta name="robots" content="noindex,follow">
+  <meta name="googlebot" content="noindex,follow">
+  <meta name="bingbot" content="noindex,follow">
+  <meta name="rating" content="general">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Elite MGMT Agency">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Creator Portal · Elite MGMT Agency">
+  <meta property="og:description" content="Secure operations hub for active Elite MGMT creators. Sign-in required.">
+  <meta property="og:url" content="https://elite-mgmt-agency.com/portal/">
+  <meta property="og:image" content="https://elite-mgmt-agency.com/assets/img/social/og-default.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Elite MGMT creator portal.">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@elitemgmt">
+  <meta name="twitter:title" content="Creator Portal · Elite MGMT Agency">
+  <meta name="twitter:description" content="Secure operations hub for active creators.">
+  <meta name="twitter:image" content="https://elite-mgmt-agency.com/assets/img/social/og-default.jpg">
+
+  <link rel="alternate" hreflang="en" href="https://elite-mgmt-agency.com/portal/">
+  <link rel="alternate" hreflang="en-us" href="https://elite-mgmt-agency.com/portal/">
+  <link rel="alternate" hreflang="x-default" href="https://elite-mgmt-agency.com/portal/">
+
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/assets/img/logo/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/img/logo/logo-180.png" sizes="180x180">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="msapplication-TileColor" content="#0A0A0A">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@300;400;500;600&amp;family=Geist+Mono:wght@400;500&amp;display=swap">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=1">
+
+  <style>
+    .pt-wrap { min-height: calc(100vh - 80px); display: grid; grid-template-columns: 1fr 1fr; }
+    @media (max-width: 980px) { .pt-wrap { grid-template-columns: 1fr; min-height: auto; } }
+    .pt-left { padding: clamp(48px,6vw,96px) var(--pad-x); display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--line); background: var(--bg); }
+    @media (max-width: 980px) { .pt-left { border-right: 0; border-bottom: 1px solid var(--line); } }
+    .pt-right { padding: clamp(48px,6vw,96px) var(--pad-x); background: var(--bg-2); display: flex; flex-direction: column; justify-content: center; }
+    .pt-bc { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--mute); margin-bottom: 28px; }
+    .pt-bc a { color: var(--mute); }
+    .pt-bc a:hover { color: var(--pink); }
+    .pt-bc .sep { padding: 0 8px; }
+    .pt-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--pink); margin-bottom: 18px; }
+    .pt-h1 { font-family: var(--display); font-size: clamp(46px,6.4vw,84px); line-height: .94; letter-spacing: -.028em; color: var(--ink); margin-bottom: 22px; max-width: 14ch; }
+    .pt-h1 em { font-style: italic; color: var(--pink); }
+    .pt-lede { font-family: var(--display); font-size: clamp(18px,1.6vw,24px); line-height: 1.32; color: var(--ink-2); max-width: 42ch; margin-bottom: 32px; }
+    .pt-form { display: flex; flex-direction: column; gap: 14px; max-width: 360px; }
+    .pt-field { display: flex; flex-direction: column; gap: 6px; }
+    .pt-field label { font-family: var(--mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--mute); }
+    .pt-field input { font-family: var(--mono); font-size: 14px; color: var(--ink); background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; transition: border-color .15s, background .15s; }
+    .pt-field input:focus { border-color: var(--pink); outline: 2px solid rgba(245,130,177,.25); outline-offset: 0; }
+    .pt-actions { display: flex; flex-direction: column; gap: 14px; margin-top: 8px; }
+    .pt-help { font-family: var(--sans); font-size: 13px; color: var(--mute); margin-top: 6px; }
+    .pt-help a { color: var(--pink); border-bottom: 1px solid rgba(245,130,177,.4); }
+    .pt-help a:hover { color: var(--pink-2); }
+    .pt-info-block { padding-bottom: 22px; border-bottom: 1px solid var(--line); margin-bottom: 22px; }
+    .pt-info-block:last-of-type { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+    .pt-info-block h3 { font-family: var(--display); font-size: clamp(20px,1.8vw,26px); line-height: 1.16; color: var(--ink); margin-bottom: 10px; }
+    .pt-info-block h3 em { font-style: italic; color: var(--pink); }
+    .pt-info-block p { font-family: var(--sans); font-size: 14.5px; line-height: 1.6; color: var(--ink-2); max-width: 52ch; }
+    .pt-info-block p a { color: var(--pink); border-bottom: 1px solid rgba(245,130,177,.4); }
+    .pt-info-block .lbl { font-family: var(--mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--mute); margin-bottom: 6px; }
+    .pt-security-list { list-style: none; padding: 0; margin: 0; font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); line-height: 1.8; }
+    .pt-security-list li::before { content: "→ "; color: var(--pink); }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://elite-mgmt-agency.com/portal/#webpage",
+        "url": "https://elite-mgmt-agency.com/portal/",
+        "name": "Creator Portal · Elite MGMT Agency",
+        "description": "Sign in to the Elite MGMT creator portal — the secure operations hub for active creators.",
+        "isPartOf": { "@id": "https://elite-mgmt-agency.com/#website" },
+        "about": { "@id": "https://elite-mgmt-agency.com/#organization" },
+        "inLanguage": "en-US",
+        "datePublished": "2026-05-12T00:00:00-04:00",
+        "dateModified": "2026-05-12T00:00:00-04:00",
+        "breadcrumb": { "@id": "https://elite-mgmt-agency.com/portal/#breadcrumb" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://elite-mgmt-agency.com/portal/#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://elite-mgmt-agency.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Creator Portal", "item": "https://elite-mgmt-agency.com/portal/" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body data-screen-label="Creator Portal">
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="nav" role="banner">
+    <a class="nav-brand" href="/" aria-label="Elite MGMT Agency — Home">
+      <img src="/assets/img/logo/logo-64.png" srcset="/assets/img/logo/logo-64.png 1x, /assets/img/logo/logo-128.png 2x" alt="" width="30" height="30" decoding="async">
+      <span class="b-text"><b>Elite MGMT</b><small>Creator agency · est. 2019</small></span>
+    </a>
+    <div class="nav-right">
+      <span class="nav-locale">NYC · EST 2019</span>
+      <a class="btn btn-pink" href="/#apply">Apply to join
+        <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a class="btn" href="/">Home</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="pt-wrap">
+      <div class="pt-left">
+        <nav class="pt-bc" aria-label="Breadcrumb">
+          <a href="/">Home</a><span class="sep">/</span><span>Creator Portal</span>
+        </nav>
+
+        <p class="pt-eyebrow">Creator portal · sign in</p>
+
+        <h1 class="pt-h1">Welcome <em>back.</em></h1>
+
+        <p class="pt-lede">The Elite MGMT creator portal is the operational home for every active creator on the roster — revenue dashboards, weekly DMCA reports, content calendars, chat metrics, payout history and direct lines to your pod.</p>
+
+        <form class="pt-form" action="https://portal.elite-mgmt-agency.com/auth/start" method="post" autocomplete="off" novalidate>
+          <div class="pt-field">
+            <label for="email">Work email</label>
+            <input type="email" id="email" name="email" required autocomplete="username" inputmode="email" placeholder="you@elite-mgmt-agency.com">
+          </div>
+          <div class="pt-actions">
+            <button type="submit" class="btn btn-pink btn-lg">
+              Send sign-in link
+              <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+            <a class="btn btn-lg" href="https://portal.elite-mgmt-agency.com/auth/passkey">Continue with passkey</a>
+          </div>
+          <p class="pt-help">Trouble signing in? <a href="mailto:portal@elite-mgmt-agency.com">portal@elite-mgmt-agency.com</a> · <a href="tel:+12125550142">+1 212 555 0142</a></p>
+        </form>
+      </div>
+
+      <aside class="pt-right" aria-label="Portal information">
+        <div class="pt-info-block">
+          <p class="lbl">What's in here</p>
+          <h3>Your <em>operations</em>.</h3>
+          <p>Live revenue across every platform, week-over-week deltas, top PPV performers, retention cohorts, chat shift-by-shift output, DMCA queue status, and a direct messaging channel to your producer and chat lead.</p>
+        </div>
+        <div class="pt-info-block">
+          <p class="lbl">Authentication</p>
+          <h3>Magic links &amp; <em>passkeys</em>.</h3>
+          <p>We do not use passwords. Sign in with an email magic link or a hardware/biometric passkey. Sessions are tied to a single device and revoke automatically after 14 days of inactivity.</p>
+        </div>
+        <div class="pt-info-block">
+          <p class="lbl">Security</p>
+          <h3>What we <em>require</em>.</h3>
+          <ul class="pt-security-list">
+            <li>Device with passcode and disk encryption</li>
+            <li>Browser with TLS 1.3 (Safari 15+, Chrome 100+, Firefox 100+)</li>
+            <li>Two-factor on the email account you sign in with</li>
+            <li>No screen-sharing or AnyDesk while logged in</li>
+          </ul>
+        </div>
+        <div class="pt-info-block">
+          <p class="lbl">Not a creator (yet)?</p>
+          <h3>The portal is invite-only.</h3>
+          <p>The portal is provisioned for signed creators only — there is no self-serve sign-up. If you'd like to apply for representation, head to the <a href="/#apply">application form</a>. We sign less than 1% of applicants.</p>
+        </div>
+        <div class="pt-info-block">
+          <p class="lbl">Status</p>
+          <h3>System status &amp; <em>incidents</em>.</h3>
+          <p>Live uptime, incident history and scheduled maintenance windows are at <a href="https://status.elite-mgmt-agency.com">status.elite-mgmt-agency.com</a>. We post incident retros publicly within five business days of resolution.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer aria-label="Site footer">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="/assets/img/logo/logo-64.png" alt="" width="44" height="44" decoding="async">
+        <p class="foot-brand-name">Elite MGMT Agency</p>
+        <p>Women-only creator management agency. Independent, partner-owned, US-headquartered. New York since 2019.</p>
+      </div>
+      <nav class="foot-col" aria-label="Quick navigation">
+        <h3>Find your way</h3>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#about">The numbers</a></li>
+          <li><a href="/#creators">Roster</a></li>
+          <li><a href="/#services">Services</a></li>
+          <li><a href="/#apply">Apply</a></li>
+          <li><a href="/journal/scale-onlyfans-2026/">Journal</a></li>
+        </ul>
+      </nav>
+      <nav class="foot-col" aria-label="Contact">
+        <h3>Talk to us</h3>
+        <ul>
+          <li><a href="mailto:hello@elite-mgmt-agency.com">hello@elite-mgmt-agency.com</a></li>
+          <li><a href="tel:+12125550142">+1 212 555 0142</a></li>
+          <li><a href="/press/">Press inquiries</a></li>
+          <li><a href="/careers/">Careers</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <p class="foot-massive" aria-hidden="true">Elite <em>MGMT</em></p>
+
+    <div class="foot-bottom">
+      <p>© 2019–2026 Elite MGMT Agency, Inc. · 11 Mercer St, 4F · New York, NY 10013 · 18+ creators only</p>
+      <nav class="legal" aria-label="Legal">
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+        <a href="/cookies/">Cookies</a>
+        <a href="/dmca/">DMCA</a>
+        <a href="/2257/">2257</a>
+        <a href="/sitemap.xml">Sitemap</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/assets/js/app.js?v=1" defer></script>
+</body>
+</html>
