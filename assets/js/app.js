@@ -1,7 +1,7 @@
 /*! Elite MGMT Agency — production client script · v1.0
  *  Behaviors: side-menu w/ focus trap · custom cursor · ARIA FAQ accordion ·
  *  talent tablist filter · form submission w/ honeypot · IntersectionObserver
- *  reveal · GMT clock · in-page smooth navigation.
+ *  reveal · in-page smooth navigation.
  *
  *  No dependencies. Defer-loaded. IIFE-scoped. Defensive throughout.
  *  © Elite MGMT Agency, Inc.
@@ -289,13 +289,30 @@
   }
 
   /* ──────────────────────────────────────────────────────────────────
-     Form submission — honeypot validation, native checkValidity, JSON
-     POST to declared action URL, graceful degradation to email fallback.
+     Form submission — honeypot, per-field validation, char counter,
+     localStorage draft auto-save/restore, JSON POST, mailto fallback,
+     in-place success state.
      ──────────────────────────────────────────────────────────────── */
+  var APPLY_DRAFT_KEY = 'ema_apply_draft_v1';
+  var DRAFT_TTL_MS    = 1000 * 60 * 60 * 24 * 14; // 14 days
+
   function initForms() {
     $$('form#apply-form, form#news-form').forEach(function (form) {
       on(form, 'submit', function (e) { handleSubmit(e, form); });
+      attachFieldValidation(form);
+      if (form.id === 'apply-form') {
+        attachCharCounter(form);
+        restoreDraft(form);
+        attachDraftAutosave(form);
+        attachResetSuccess(form);
+        stampReferrer(form);
+      }
     });
+  }
+
+  function stampReferrer(form) {
+    var ref = form.querySelector('input[name="_referrer"]');
+    if (ref && document.referrer) ref.value = document.referrer;
   }
 
   function setStatus(node, kind, msg) {
@@ -305,10 +322,191 @@
     node.textContent = msg || '';
   }
 
-  function successMessage(form) {
-    if (form.id === 'news-form') {
-      return 'Subscribed. Watch for our quarterly note.';
+  function setFieldError(field, msg) {
+    if (!field) return;
+    var id = field.getAttribute('aria-describedby');
+    var err = id ? document.getElementById(id) : null;
+    if (msg) {
+      field.setAttribute('aria-invalid', 'true');
+      if (err) err.textContent = msg;
+    } else {
+      field.removeAttribute('aria-invalid');
+      if (err) err.textContent = '';
     }
+  }
+
+  function fieldMessage(field) {
+    if (!field) return '';
+    var v = field.value || '';
+    var name = field.name;
+    if (field.required && !v.trim()) {
+      if (field.type === 'checkbox') return 'Required to continue.';
+      if (field.tagName === 'SELECT') return 'Pick one.';
+      return 'Required.';
+    }
+    if (field.type === 'checkbox' && field.required && !field.checked) {
+      return 'Required to continue.';
+    }
+    if (field.type === 'email' && v && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) {
+      return 'Use a valid email — like name@domain.com.';
+    }
+    if (name === 'phone' && v && v.replace(/[^\d]/g, '').length < 7) {
+      return 'Use a phone with country code, or leave blank.';
+    }
+    return '';
+  }
+
+  function attachFieldValidation(form) {
+    $$('input, select, textarea', form).forEach(function (field) {
+      if (field.type === 'hidden' || field.name === 'company') return;
+      on(field, 'blur', function () { setFieldError(field, fieldMessage(field)); });
+      on(field, 'input', function () {
+        if (field.getAttribute('aria-invalid') === 'true') {
+          setFieldError(field, fieldMessage(field));
+        }
+      });
+      if (field.type === 'checkbox') {
+        on(field, 'change', function () { setFieldError(field, fieldMessage(field)); });
+      }
+    });
+  }
+
+  function attachCharCounter(form) {
+    var notes = form.querySelector('textarea[name="notes"]');
+    var count = form.querySelector('#notes-count');
+    if (!notes || !count) return;
+    var max = parseInt(notes.getAttribute('maxlength') || '2000', 10);
+    function render() {
+      var len = (notes.value || '').length;
+      count.textContent = len + ' / ' + max;
+      count.classList.toggle('near', len > max * 0.85);
+    }
+    on(notes, 'input', render);
+    render();
+  }
+
+  function readDraft() {
+    try {
+      var raw = window.localStorage.getItem(APPLY_DRAFT_KEY);
+      if (!raw) return null;
+      var obj = JSON.parse(raw);
+      if (!obj || !obj.ts || (Date.now() - obj.ts) > DRAFT_TTL_MS) {
+        window.localStorage.removeItem(APPLY_DRAFT_KEY);
+        return null;
+      }
+      return obj.data || null;
+    } catch (_) { return null; }
+  }
+
+  function writeDraft(data) {
+    try {
+      window.localStorage.setItem(APPLY_DRAFT_KEY, JSON.stringify({ ts: Date.now(), data: data }));
+    } catch (_) { /* quota or private mode */ }
+  }
+
+  function clearDraft() {
+    try { window.localStorage.removeItem(APPLY_DRAFT_KEY); } catch (_) {}
+  }
+
+  function restoreDraft(form) {
+    var data = readDraft();
+    if (!data) return;
+    Object.keys(data).forEach(function (k) {
+      var el = form.elements.namedItem(k);
+      if (!el || k === 'company' || k.indexOf('_') === 0) return;
+      if (el.type === 'checkbox') {
+        el.checked = !!data[k];
+      } else {
+        el.value = data[k];
+      }
+    });
+    // Re-run counter after restore
+    var notes = form.querySelector('textarea[name="notes"]');
+    if (notes) notes.dispatchEvent(new Event('input'));
+  }
+
+  function attachDraftAutosave(form) {
+    var pending = null;
+    function save() {
+      var fd = new FormData(form);
+      var data = {};
+      fd.forEach(function (v, k) {
+        if (k === 'company' || k.indexOf('_') === 0) return;
+        data[k] = v;
+      });
+      writeDraft(data);
+    }
+    on(form, 'input', function () {
+      if (pending) clearTimeout(pending);
+      pending = setTimeout(save, 500);
+    });
+  }
+
+  function attachResetSuccess(form) {
+    var card = document.getElementById('apply-success');
+    if (!card) return;
+    var btn = card.querySelector('.btn-reset');
+    if (!btn) return;
+    on(btn, 'click', function () {
+      card.hidden = true;
+      form.hidden = false;
+      form.reset();
+      $$('.field-error', form).forEach(function (n) { n.textContent = ''; });
+      $$('[aria-invalid="true"]', form).forEach(function (n) { n.removeAttribute('aria-invalid'); });
+      var notes = form.querySelector('textarea[name="notes"]');
+      if (notes) notes.dispatchEvent(new Event('input'));
+      var first = form.querySelector('input, select, textarea');
+      if (first) try { first.focus(); } catch (_) {}
+    });
+  }
+
+  function buildMailtoFallback(form, payload) {
+    var to = form.getAttribute('data-mailto-fallback');
+    if (!to) return null;
+    var subject = 'Roster application — ' + (payload.first_name || '') + ' ' + (payload.last_name || '');
+    var fields = [
+      ['First name',   payload.first_name],
+      ['Last / stage', payload.last_name],
+      ['Email',        payload.email],
+      ['Phone',        payload.phone],
+      ['Platform',     payload.platform],
+      ['Revenue',      payload.revenue],
+      ['Social',       payload.social],
+      ['Track',        payload.track],
+      ['Notes',        payload.notes]
+    ];
+    var body = fields
+      .filter(function (row) { return row[1]; })
+      .map(function (row) { return row[0] + ': ' + row[1]; })
+      .join('\n');
+    return 'mailto:' + encodeURIComponent(to)
+         + '?subject=' + encodeURIComponent(subject.trim())
+         + '&body='    + encodeURIComponent(body);
+  }
+
+  function validateAllFields(form) {
+    var firstInvalid = null;
+    $$('input, select, textarea', form).forEach(function (field) {
+      if (field.type === 'hidden' || field.name === 'company') return;
+      var msg = fieldMessage(field);
+      setFieldError(field, msg);
+      if (msg && !firstInvalid) firstInvalid = field;
+    });
+    return firstInvalid;
+  }
+
+  function showSuccessCard(form) {
+    var card = document.getElementById('apply-success');
+    if (!card) return false;
+    form.hidden = true;
+    card.hidden = false;
+    try { card.focus(); } catch (_) {}
+    card.scrollIntoView({ behavior: prefersReduced.matches ? 'auto' : 'smooth', block: 'center' });
+    return true;
+  }
+
+  function successMessage(form) {
+    if (form.id === 'news-form') return 'Subscribed. Watch for our quarterly note.';
     return 'Application received. A partner will reply within seven days. NDA on receipt.';
   }
 
@@ -316,7 +514,7 @@
     if (form.id === 'news-form') {
       return 'We could not subscribe you right now. Email join@elite-mgmt-agency.com and we will add you manually.';
     }
-    return 'Your application did not send. Email join@elite-mgmt-agency.com and we will follow up directly.';
+    return 'Send failed — we opened your email app so you can send directly. Or write to join@elite-mgmt-agency.com.';
   }
 
   function handleSubmit(e, form) {
@@ -324,10 +522,10 @@
     var status = form.querySelector('.form-status');
     var btn    = form.querySelector('button[type="submit"]') || form.querySelector('button:not([type])');
 
-    // Native validation — uses browser tooltips for missing required fields.
-    if (typeof form.checkValidity === 'function' && !form.checkValidity()) {
-      setStatus(status, 'error', 'Please complete the required fields.');
-      if (typeof form.reportValidity === 'function') form.reportValidity();
+    var firstInvalid = validateAllFields(form);
+    if (firstInvalid) {
+      setStatus(status, 'error', 'Please complete the highlighted fields.');
+      try { firstInvalid.focus(); } catch (_) {}
       return;
     }
 
@@ -339,22 +537,20 @@
       return;
     }
 
-    // Time-stamp submission
     var ts = form.querySelector('input[name="_submitted_at"]');
     if (ts) ts.value = new Date().toISOString();
 
-    // Build payload — exclude honeypot.
     var fd = new FormData(form);
     var payload = {};
     fd.forEach(function (v, k) { if (k !== 'company') payload[k] = v; });
 
-    // Lock the submit button.
     var originalHTML = null;
     if (btn) {
       originalHTML = btn.innerHTML;
       btn.disabled = true;
       btn.setAttribute('aria-busy', 'true');
-      btn.innerHTML = form.id === 'news-form' ? 'Sending…' : 'Sending application…';
+      var label = btn.querySelector('.btn-label');
+      if (label) label.textContent = form.id === 'news-form' ? 'Sending…' : 'Sending application…';
     }
     setStatus(status, '', 'Sending…');
 
@@ -371,37 +567,51 @@
       credentials: 'same-origin'
     };
 
-    // 15s submission timeout via AbortController
-    var ctrl = (typeof AbortController === 'function') ? new AbortController() : null;
+    var ctrl  = (typeof AbortController === 'function') ? new AbortController() : null;
     if (ctrl) fetchOpts.signal = ctrl.signal;
     var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 15000) : null;
 
-    var done = function (ok) {
-      if (timer) clearTimeout(timer);
+    var unlockBtn = function () {
       if (btn) {
         btn.disabled = false;
         btn.removeAttribute('aria-busy');
         if (originalHTML != null) btn.innerHTML = originalHTML;
       }
-      if (ok) {
+    };
+
+    var onOk = function () {
+      if (timer) clearTimeout(timer);
+      unlockBtn();
+      clearDraft();
+      if (form.id === 'apply-form' && showSuccessCard(form)) {
+        setStatus(status, 'success', '');
+      } else {
         setStatus(status, 'success', successMessage(form));
         form.reset();
-        // Re-stamp the timestamp on the next submit
         if (ts) ts.value = '';
-      } else {
-        setStatus(status, 'error', errorMessage(form));
+      }
+    };
+
+    var onFail = function () {
+      if (timer) clearTimeout(timer);
+      unlockBtn();
+      setStatus(status, 'error', errorMessage(form));
+      if (form.id === 'apply-form') {
+        var mailto = buildMailtoFallback(form, payload);
+        if (mailto) {
+          try { window.location.href = mailto; } catch (_) {}
+        }
       }
     };
 
     if (typeof window.fetch !== 'function') {
-      // Browser without fetch — fail gracefully to email fallback.
-      done(false);
+      onFail();
       return;
     }
 
     window.fetch(action, fetchOpts)
-      .then(function (res) { done(!!res && res.ok); })
-      .catch(function () { done(false); });
+      .then(function (res) { (res && res.ok) ? onOk() : onFail(); })
+      .catch(function () { onFail(); });
   }
 
   /* ──────────────────────────────────────────────────────────────────
@@ -423,31 +633,6 @@
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
     els.forEach(function (el) { io.observe(el); });
-  }
-
-  /* ──────────────────────────────────────────────────────────────────
-     GMT clock — updates [data-clock] elements at 30s cadence.
-     ──────────────────────────────────────────────────────────────── */
-  function initClock() {
-    var nodes = $$('[data-clock]');
-    if (!nodes.length) return;
-
-    function render() {
-      var d = new Date();
-      var hh = String(d.getUTCHours()).padStart(2, '0');
-      var mm = String(d.getUTCMinutes()).padStart(2, '0');
-      var text = hh + ':' + mm + ' GMT';
-      nodes.forEach(function (n) { n.textContent = text; });
-    }
-
-    render();
-    // Align next tick to the next minute boundary so display is always fresh
-    var now = new Date();
-    var msToNextMinute = (60 - now.getUTCSeconds()) * 1000 - now.getUTCMilliseconds();
-    setTimeout(function () {
-      render();
-      setInterval(render, 60 * 1000);
-    }, msToNextMinute);
   }
 
   /* ──────────────────────────────────────────────────────────────────
@@ -519,7 +704,6 @@
     initTalentFilter();
     initForms();
     initReveal();
-    initClock();
     initSmoothNav();
     hardenExternalLinks();
   }

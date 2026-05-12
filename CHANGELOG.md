@@ -13,6 +13,21 @@ Owner: **Viral Ventures LLC**, Maple Grove, MN.
 
 ### Added
 
+- Hierarchical primary-navigation drawer propagated to every page (homepage
+  + 19 sub-pages + 404). Six section groups — Agency / Services / For
+  creators / Discover / Journal / Company — provide one-tap access to every
+  URL in the property.
+- Six-column site-wide footer (Brand · Agency · Services · Discover ·
+  Creators · Connect) on every page; SEO landing pages and service
+  sub-pages now linked from every footer.
+- Press / media wordmarks rendered as inline SVG type-marks (FORBES,
+  Bloomberg, Businessweek, FORTUNE, The Information, WIRED, Business
+  Insider) in the homepage press section.
+- Fully functional roster-application form: per-field validation
+  (blur + live), required-field markers, character counter, ARIA error
+  messaging, success card with reset, 14-day localStorage draft
+  auto-save with TTL, and `mailto:` fallback via `data-mailto-fallback`
+  for offline / no-backend scenarios.
 - Repository scaffolding for proprietary delivery: `LICENSE`, `README.md`,
   `CONTRIBUTING.md`, `SECURITY.md`, `CHANGELOG.md`.
 - Tooling configs: Prettier, ESLint (flat config), stylelint, html-validate,
@@ -22,6 +37,27 @@ Owner: **Viral Ventures LLC**, Maple Grove, MN.
 - Dependabot configuration for weekly dependency updates.
 - VS Code workspace settings and recommended extensions.
 - Pull request and issue templates.
+
+### Changed
+
+- Founding-year copy updated from **2019** to **2020** site-wide
+  (visible body copy, `foundingDate` JSON-LD, `datePublished`, copyright
+  range, hero/footer metadata).
+- Homepage section heads de-numbered: removed the `01 / 09` … `09 / 09`
+  ordinal prefixes from all nine primary sections for a cleaner editorial
+  rhythm.
+- Reduced repetition of the `$340k/mo.` headline figure on the homepage
+  from four occurrences to one, replacing redundant mentions with
+  complementary roster metrics (top-0.1% positioning, 38× multiple, etc.).
+
+### Removed
+
+- Live GMT clock element from the primary header (HTML span, JS
+  `initClock()` boot call, and `.nav-locale` clock styling).
+- Homepage hero meta-bar items: `Index · 01 / 09`,
+  `Roster · 42 creators · invite only`,
+  `Avg. revenue multiple · 6.4× in 90 days`,
+  `Live · Q3 onboarding open`, and the standalone scroll cue.
 
 ## [1.0.0] - 2026-05-11
 
