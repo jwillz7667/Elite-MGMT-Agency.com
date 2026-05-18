@@ -49,16 +49,16 @@
   },
   "devDependencies": {
     "@lhci/cli": "^0.14.0",
-    "eslint": "^9.18.0",
-    "html-validate": "^9.3.0",
+    "eslint": "^10.4.0",
+    "html-validate": "^11.2.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.0",
     "pa11y-ci": "^4.0.0",
-    "prettier": "^3.4.0",
+    "prettier": "^3.8.3",
     "rimraf": "^6.0.1",
     "serve": "^14.2.4",
-    "stylelint": "^16.13.0",
-    "stylelint-config-standard": "^36.0.1"
+    "stylelint": "^17.11.1",
+    "stylelint-config-standard": "^40.0.0"
   },
   "lint-staged": {
     "*.{html,css,js,mjs,json,md,yml,yaml,xml,svg,webmanifest}": [
