@@ -15,36 +15,41 @@
      ──────────────────────────────────────────────────────────────── */
   var docEl = document.documentElement;
 
-  function $(sel, root) { return (root || document).querySelector(sel); }
+  function $(sel, root) {
+    return (root || document).querySelector(sel);
+  }
   function $$(sel, root) {
     var list = (root || document).querySelectorAll(sel);
     return Array.prototype.slice.call(list);
   }
-  function on(el, ev, fn, opts) { if (el) el.addEventListener(ev, fn, opts); }
+  function on(el, ev, fn, opts) {
+    if (el) el.addEventListener(ev, fn, opts);
+  }
   function mq(q) {
-    return (typeof window.matchMedia === 'function')
+    return typeof window.matchMedia === 'function'
       ? window.matchMedia(q)
       : { matches: false, addEventListener: function () {}, addListener: function () {} };
   }
 
   var prefersReduced = mq('(prefers-reduced-motion: reduce)');
-  var hoverCapable   = mq('(hover: hover) and (pointer: fine)');
-  var supportsInert  = 'inert' in HTMLElement.prototype;
+  var hoverCapable = mq('(hover: hover) and (pointer: fine)');
+  var supportsInert = 'inert' in HTMLElement.prototype;
 
   /* ──────────────────────────────────────────────────────────────────
      Side menu — drawer pattern with focus trap, scroll lock, Esc-close,
      overlay-click-close, and inert-on-main for assistive tech.
      ──────────────────────────────────────────────────────────────── */
   function initSideMenu() {
-    var menu     = $('#side-menu');
-    var trigger  = $('.menu-trigger');
+    var menu = $('#side-menu');
+    var trigger = $('.menu-trigger');
     var closeBtn = $('.menu-close');
-    var overlay  = $('.menu-overlay');
-    var main     = $('#main');
+    var overlay = $('.menu-overlay');
+    var main = $('#main');
     if (!menu || !trigger) return;
 
+    menu.inert = true;
     var lastFocus = null;
-    var isOpen    = false;
+    var isOpen = false;
     var hideTimer = null;
 
     function visible(el) {
@@ -52,9 +57,10 @@
     }
 
     function focusables() {
-      var sel = 'a[href], button:not([disabled]), input:not([disabled]),'
-              + 'select:not([disabled]), textarea:not([disabled]),'
-              + '[tabindex]:not([tabindex="-1"])';
+      var sel =
+        'a[href], button:not([disabled]), input:not([disabled]),' +
+        'select:not([disabled]), textarea:not([disabled]),' +
+        '[tabindex]:not([tabindex="-1"])';
       return $$(sel, menu).filter(visible);
     }
 
@@ -62,8 +68,12 @@
       if (isOpen) return;
       isOpen = true;
       lastFocus = document.activeElement;
-      if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+      if (hideTimer) {
+        clearTimeout(hideTimer);
+        hideTimer = null;
+      }
 
+      menu.inert = false;
       menu.classList.add('open');
       menu.setAttribute('aria-hidden', 'false');
       trigger.setAttribute('aria-expanded', 'true');
@@ -71,7 +81,9 @@
       if (overlay) {
         overlay.hidden = false;
         // next frame so the opacity transition runs
-        requestAnimationFrame(function () { overlay.classList.add('show'); });
+        requestAnimationFrame(function () {
+          overlay.classList.add('show');
+        });
       }
       document.body.classList.add('menu-open');
       docEl.classList.add('menu-open');
@@ -80,7 +92,11 @@
       requestAnimationFrame(function () {
         var f = focusables();
         var target = f[0] || menu;
-        try { target.focus({ preventScroll: true }); } catch (_) { target.focus(); }
+        try {
+          target.focus({ preventScroll: true });
+        } catch (_) {
+          target.focus();
+        }
       });
     }
 
@@ -88,28 +104,37 @@
       if (!isOpen) return;
       isOpen = false;
 
+      menu.inert = true;
       menu.classList.remove('open');
       menu.setAttribute('aria-hidden', 'true');
       trigger.setAttribute('aria-expanded', 'false');
 
       if (overlay) {
         overlay.classList.remove('show');
-        hideTimer = setTimeout(function () { overlay.hidden = true; }, 450);
+        hideTimer = setTimeout(function () {
+          overlay.hidden = true;
+        }, 450);
       }
       document.body.classList.remove('menu-open');
       docEl.classList.remove('menu-open');
       if (main && supportsInert) main.inert = false;
 
       if (lastFocus && typeof lastFocus.focus === 'function') {
-        try { lastFocus.focus({ preventScroll: true }); } catch (_) { lastFocus.focus(); }
+        try {
+          lastFocus.focus({ preventScroll: true });
+        } catch (_) {
+          lastFocus.focus();
+        }
       }
     }
 
-    function toggle() { isOpen ? close() : open(); }
+    function toggle() {
+      isOpen ? close() : open();
+    }
 
-    on(trigger,  'click', toggle);
+    on(trigger, 'click', toggle);
     on(closeBtn, 'click', close);
-    on(overlay,  'click', close);
+    on(overlay, 'click', close);
 
     on(document, 'keydown', function (e) {
       if (!isOpen) return;
@@ -123,18 +148,26 @@
       var f = focusables();
       if (!f.length) return;
       var first = f[0];
-      var last  = f[f.length - 1];
+      var last = f[f.length - 1];
       var active = document.activeElement;
 
       if (e.shiftKey) {
         if (active === first || !menu.contains(active)) {
           e.preventDefault();
-          try { last.focus({ preventScroll: true }); } catch (_) { last.focus(); }
+          try {
+            last.focus({ preventScroll: true });
+          } catch (_) {
+            last.focus();
+          }
         }
       } else {
         if (active === last) {
           e.preventDefault();
-          try { first.focus({ preventScroll: true }); } catch (_) { first.focus(); }
+          try {
+            first.focus({ preventScroll: true });
+          } catch (_) {
+            first.focus();
+          }
         }
       }
     });
@@ -142,11 +175,19 @@
     // Auto-close on in-menu link click; runs before document-level smooth-nav
     // delegator (direct handlers fire before delegated ones in capture-less mode)
     $$('a[href]', menu).forEach(function (a) {
-      on(a, 'click', function () { close(); });
+      on(a, 'click', function () {
+        close();
+      });
     });
 
     // Expose for other modules
-    window.__emaMenu = { open: open, close: close, isOpen: function () { return isOpen; } };
+    window.__emaMenu = {
+      open: open,
+      close: close,
+      isOpen: function () {
+        return isOpen;
+      },
+    };
   }
 
   /* ──────────────────────────────────────────────────────────────────
@@ -160,26 +201,46 @@
       return;
     }
 
-    var hoverSel = 'a, button, [role="button"], input, select, textarea, label, '
-                 + '.chip, .faq-q, [data-cursor="hover"]';
+    var hoverSel =
+      'a, button, [role="button"], input, select, textarea, label, ' +
+      '.chip, .faq-q, [data-cursor="hover"]';
 
-    on(document, 'pointermove', function (e) {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top  = e.clientY + 'px';
-    }, { passive: true });
+    on(
+      document,
+      'pointermove',
+      function (e) {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+      },
+      { passive: true }
+    );
 
-    on(document, 'pointerover', function (e) {
-      var t = e.target;
-      if (t && t.closest && t.closest(hoverSel)) cursor.classList.add('hover');
-    }, { passive: true });
+    on(
+      document,
+      'pointerover',
+      function (e) {
+        var t = e.target;
+        if (t && t.closest && t.closest(hoverSel)) cursor.classList.add('hover');
+      },
+      { passive: true }
+    );
 
-    on(document, 'pointerout', function (e) {
-      var t = e.target;
-      if (t && t.closest && t.closest(hoverSel)) cursor.classList.remove('hover');
-    }, { passive: true });
+    on(
+      document,
+      'pointerout',
+      function (e) {
+        var t = e.target;
+        if (t && t.closest && t.closest(hoverSel)) cursor.classList.remove('hover');
+      },
+      { passive: true }
+    );
 
-    on(document, 'mouseleave', function () { cursor.style.opacity = '0'; });
-    on(document, 'mouseenter', function () { cursor.style.opacity = '1'; });
+    on(document, 'mouseleave', function () {
+      cursor.style.opacity = '0';
+    });
+    on(document, 'mouseenter', function () {
+      cursor.style.opacity = '1';
+    });
   }
 
   /* ──────────────────────────────────────────────────────────────────
@@ -190,37 +251,43 @@
     if (!items.length) return;
 
     items.forEach(function (item) {
-      var btn = item.querySelector('.faq-q');
+      var btn = item.querySelector('button.faq-q[aria-controls]');
       if (!btn) return;
+      var panel = document.getElementById(btn.getAttribute('aria-controls'));
+      if (!panel) return;
+      panel.hidden = btn.getAttribute('aria-expanded') !== 'true';
       on(btn, 'click', function () {
         var willOpen = btn.getAttribute('aria-expanded') !== 'true';
         // Single-open behavior — collapse all peers first
         items.forEach(function (other) {
-          var ob = other.querySelector('.faq-q');
+          var ob = other.querySelector('button.faq-q[aria-controls]');
           if (!ob) return;
           ob.setAttribute('aria-expanded', 'false');
           other.classList.remove('open');
+          var otherPanel = document.getElementById(ob.getAttribute('aria-controls'));
+          if (otherPanel) otherPanel.hidden = true;
         });
         if (willOpen) {
           btn.setAttribute('aria-expanded', 'true');
           item.classList.add('open');
+          if (panel) panel.hidden = false;
         }
       });
     });
   }
 
   /* ──────────────────────────────────────────────────────────────────
-     Talent filter — ARIA tablist with arrow-key navigation. Cards
-     dim via data-filtered attribute (CSS handles the visual).
+     Talent filter — pressed buttons with arrow-key navigation.
+     Nonmatching cards leave both the visual and accessibility trees.
      ──────────────────────────────────────────────────────────────── */
   function initTalentFilter() {
     var tablist = $('.talent-filters');
-    var chips   = $$('.talent-filters .chip');
-    var cards   = $$('.talent-card');
-    var count   = $('.talent-foot .count');
+    var chips = $$('.talent-filters .chip');
+    var cards = $$('.talent-card');
+    var count = $('.talent-foot .count');
     if (!chips.length || !cards.length) return;
 
-    var TOTAL = 42; // canonical roster size shown in copy
+    var TOTAL = cards.length;
 
     function matches(card, filter) {
       if (filter === 'all') return true;
@@ -233,36 +300,39 @@
       cards.forEach(function (card) {
         var ok = matches(card, filter);
         if (ok) {
-          card.removeAttribute('data-filtered');
+          card.hidden = false;
           visibleCount++;
         } else {
-          card.setAttribute('data-filtered', 'true');
+          card.hidden = true;
         }
       });
       if (count) {
-        count.textContent = filter === 'all'
-          ? 'Showing ' + visibleCount + ' of ' + TOTAL + ' creators · names anonymized'
-          : 'Showing ' + visibleCount + ' of ' + TOTAL + ' · filter: ' + filter;
+        count.textContent =
+          filter === 'all'
+            ? 'Showing ' + visibleCount + ' of ' + TOTAL + ' featured profiles · names anonymized'
+            : 'Showing ' + visibleCount + ' of ' + TOTAL + ' · filter: ' + filter;
       }
     }
 
     function select(chip) {
       chips.forEach(function (c) {
         c.classList.remove('active');
-        c.setAttribute('aria-selected', 'false');
+        c.setAttribute('aria-pressed', 'false');
         c.setAttribute('tabindex', '-1');
       });
       chip.classList.add('active');
-      chip.setAttribute('aria-selected', 'true');
+      chip.setAttribute('aria-pressed', 'true');
       chip.setAttribute('tabindex', '0');
       apply(chip.getAttribute('data-filter') || 'all');
     }
 
     chips.forEach(function (chip) {
       // Initial roving tabindex
-      if (chip.getAttribute('aria-selected') !== 'true') chip.setAttribute('tabindex', '-1');
+      if (chip.getAttribute('aria-pressed') !== 'true') chip.setAttribute('tabindex', '-1');
       else chip.setAttribute('tabindex', '0');
-      on(chip, 'click', function () { select(chip); });
+      on(chip, 'click', function () {
+        select(chip);
+      });
     });
 
     on(tablist, 'keydown', function (e) {
@@ -272,346 +342,230 @@
       if (k === 'ArrowRight' || k === 'ArrowDown') {
         e.preventDefault();
         var next = chips[(i + 1) % chips.length];
-        next.focus(); select(next);
+        next.focus();
+        select(next);
       } else if (k === 'ArrowLeft' || k === 'ArrowUp') {
         e.preventDefault();
         var prev = chips[(i - 1 + chips.length) % chips.length];
-        prev.focus(); select(prev);
+        prev.focus();
+        select(prev);
       } else if (k === 'Home') {
         e.preventDefault();
-        chips[0].focus(); select(chips[0]);
+        chips[0].focus();
+        select(chips[0]);
       } else if (k === 'End') {
         e.preventDefault();
         var lastChip = chips[chips.length - 1];
-        lastChip.focus(); select(lastChip);
+        lastChip.focus();
+        select(lastChip);
       }
     });
   }
 
-  /* ──────────────────────────────────────────────────────────────────
-     Form submission — honeypot, per-field validation, char counter,
-     localStorage draft auto-save/restore, JSON POST, mailto fallback,
-     in-place success state.
-     ──────────────────────────────────────────────────────────────── */
-  var APPLY_DRAFT_KEY = 'ema_apply_draft_v1';
-  var DRAFT_TTL_MS    = 1000 * 60 * 60 * 24 * 14; // 14 days
-
+  /* Forms prepare email drafts locally. A user sends the message in their email
+     app; never claim delivery without a server acknowledgement. */
   function initForms() {
+    // Remove sensitive drafts saved by older versions on a shared device.
+    try {
+      window.localStorage.removeItem('ema_apply_draft_v1');
+    } catch (_) {
+      /* Storage or focus may be unavailable in this browser. */
+    }
     $$('form#apply-form, form#news-form').forEach(function (form) {
-      on(form, 'submit', function (e) { handleSubmit(e, form); });
-      attachFieldValidation(form);
-      if (form.id === 'apply-form') {
-        attachCharCounter(form);
-        restoreDraft(form);
-        attachDraftAutosave(form);
-        attachResetSuccess(form);
-        stampReferrer(form);
+      on(form, 'submit', function (event) {
+        prepareEmail(event, form);
+      });
+      $$('input, select, textarea', form).forEach(function (field) {
+        if (field.type === 'hidden' || field.name === 'company') return;
+        on(field, 'blur', function () {
+          setFieldError(field, fieldMessage(field));
+        });
+        on(field, 'input', function () {
+          if (field.getAttribute('aria-invalid') === 'true') {
+            setFieldError(field, fieldMessage(field));
+          }
+        });
+      });
+    });
+    var notes = $('#apply-form textarea[name="notes"]');
+    var count = $('#notes-count');
+    on(notes, 'input', function () {
+      if (count) count.textContent = notes.value.length + ' / ' + notes.maxLength;
+    });
+    var card = $('#apply-success');
+    var form = $('#apply-form');
+    on($('#edit-application'), 'click', function () {
+      if (!card || !form) return;
+      card.hidden = true;
+      form.hidden = false;
+      var first = form.querySelector('input:not([type="hidden"]):not([name="company"])');
+      if (first) first.focus();
+    });
+    on($('#copy-application'), 'click', function () {
+      var text = $('#application-email-text');
+      var status = $('#application-copy-status');
+      if (!text) return;
+      if (!navigator.clipboard || !window.isSecureContext) {
+        text.focus();
+        text.select();
+        setStatus(status, '', 'Select and copy the application text above.');
+        return;
       }
+      navigator.clipboard
+        .writeText(text.value)
+        .then(function () {
+          setStatus(
+            status,
+            'success',
+            'Copied. Paste into an email and send it to join@elite-mgmt-agency.com.'
+          );
+        })
+        .catch(function () {
+          text.focus();
+          text.select();
+          setStatus(
+            status,
+            'error',
+            'Clipboard access was unavailable. Copy the selected text manually.'
+          );
+        });
     });
   }
 
-  function stampReferrer(form) {
-    var ref = form.querySelector('input[name="_referrer"]');
-    if (ref && document.referrer) ref.value = document.referrer;
-  }
-
-  function setStatus(node, kind, msg) {
+  function setStatus(node, kind, message) {
     if (!node) return;
     node.classList.remove('success', 'error');
     if (kind) node.classList.add(kind);
-    node.textContent = msg || '';
+    node.textContent = message || '';
   }
 
-  function setFieldError(field, msg) {
+  function setFieldError(field, message) {
     if (!field) return;
-    var id = field.getAttribute('aria-describedby');
-    var err = id ? document.getElementById(id) : null;
-    if (msg) {
-      field.setAttribute('aria-invalid', 'true');
-      if (err) err.textContent = msg;
-    } else {
-      field.removeAttribute('aria-invalid');
-      if (err) err.textContent = '';
-    }
+    var ids = (field.getAttribute('aria-describedby') || '').split(/\s+/);
+    var error = ids
+      .map(function (id) {
+        return document.getElementById(id);
+      })
+      .find(function (node) {
+        return node && node.classList.contains('field-error');
+      });
+    if (message) field.setAttribute('aria-invalid', 'true');
+    else field.removeAttribute('aria-invalid');
+    if (error) error.textContent = message || '';
   }
 
   function fieldMessage(field) {
-    if (!field) return '';
-    var v = field.value || '';
-    var name = field.name;
-    if (field.required && !v.trim()) {
-      if (field.type === 'checkbox') return 'Required to continue.';
-      if (field.tagName === 'SELECT') return 'Pick one.';
-      return 'Required.';
+    if (field.disabled || field.type === 'hidden' || field.name === 'company') return '';
+    if (field.type === 'checkbox') {
+      return field.required && !field.checked ? 'Required to continue.' : '';
     }
-    if (field.type === 'checkbox' && field.required && !field.checked) {
-      return 'Required to continue.';
+    var value = field.value.trim();
+    if (field.required && !value) return 'Required.';
+    if (!field.validity.valid) return field.validationMessage;
+    if (field.type === 'email' && value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      return 'Use a valid email address.';
     }
-    if (field.type === 'email' && v && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) {
-      return 'Use a valid email — like name@domain.com.';
-    }
-    if (name === 'phone' && v && v.replace(/[^\d]/g, '').length < 7) {
-      return 'Use a phone with country code, or leave blank.';
+    if (field.name === 'phone' && value && value.replace(/\D/g, '').length < 7) {
+      return 'Include a country code, or leave blank.';
     }
     return '';
   }
 
-  function attachFieldValidation(form) {
-    $$('input, select, textarea', form).forEach(function (field) {
-      if (field.type === 'hidden' || field.name === 'company') return;
-      on(field, 'blur', function () { setFieldError(field, fieldMessage(field)); });
-      on(field, 'input', function () {
-        if (field.getAttribute('aria-invalid') === 'true') {
-          setFieldError(field, fieldMessage(field));
-        }
-      });
-      if (field.type === 'checkbox') {
-        on(field, 'change', function () { setFieldError(field, fieldMessage(field)); });
-      }
-    });
-  }
-
-  function attachCharCounter(form) {
-    var notes = form.querySelector('textarea[name="notes"]');
-    var count = form.querySelector('#notes-count');
-    if (!notes || !count) return;
-    var max = parseInt(notes.getAttribute('maxlength') || '2000', 10);
-    function render() {
-      var len = (notes.value || '').length;
-      count.textContent = len + ' / ' + max;
-      count.classList.toggle('near', len > max * 0.85);
-    }
-    on(notes, 'input', render);
-    render();
-  }
-
-  function readDraft() {
-    try {
-      var raw = window.localStorage.getItem(APPLY_DRAFT_KEY);
-      if (!raw) return null;
-      var obj = JSON.parse(raw);
-      if (!obj || !obj.ts || (Date.now() - obj.ts) > DRAFT_TTL_MS) {
-        window.localStorage.removeItem(APPLY_DRAFT_KEY);
-        return null;
-      }
-      return obj.data || null;
-    } catch (_) { return null; }
-  }
-
-  function writeDraft(data) {
-    try {
-      window.localStorage.setItem(APPLY_DRAFT_KEY, JSON.stringify({ ts: Date.now(), data: data }));
-    } catch (_) { /* quota or private mode */ }
-  }
-
-  function clearDraft() {
-    try { window.localStorage.removeItem(APPLY_DRAFT_KEY); } catch (_) {}
-  }
-
-  function restoreDraft(form) {
-    var data = readDraft();
-    if (!data) return;
-    Object.keys(data).forEach(function (k) {
-      var el = form.elements.namedItem(k);
-      if (!el || k === 'company' || k.indexOf('_') === 0) return;
-      if (el.type === 'checkbox') {
-        el.checked = !!data[k];
-      } else {
-        el.value = data[k];
-      }
-    });
-    // Re-run counter after restore
-    var notes = form.querySelector('textarea[name="notes"]');
-    if (notes) notes.dispatchEvent(new Event('input'));
-  }
-
-  function attachDraftAutosave(form) {
-    var pending = null;
-    function save() {
-      var fd = new FormData(form);
-      var data = {};
-      fd.forEach(function (v, k) {
-        if (k === 'company' || k.indexOf('_') === 0) return;
-        data[k] = v;
-      });
-      writeDraft(data);
-    }
-    on(form, 'input', function () {
-      if (pending) clearTimeout(pending);
-      pending = setTimeout(save, 500);
-    });
-  }
-
-  function attachResetSuccess(form) {
-    var card = document.getElementById('apply-success');
-    if (!card) return;
-    var btn = card.querySelector('.btn-reset');
-    if (!btn) return;
-    on(btn, 'click', function () {
-      card.hidden = true;
-      form.hidden = false;
-      form.reset();
-      $$('.field-error', form).forEach(function (n) { n.textContent = ''; });
-      $$('[aria-invalid="true"]', form).forEach(function (n) { n.removeAttribute('aria-invalid'); });
-      var notes = form.querySelector('textarea[name="notes"]');
-      if (notes) notes.dispatchEvent(new Event('input'));
-      var first = form.querySelector('input, select, textarea');
-      if (first) try { first.focus(); } catch (_) {}
-    });
-  }
-
-  function buildMailtoFallback(form, payload) {
-    var to = form.getAttribute('data-mailto-fallback');
-    if (!to) return null;
-    var subject = 'Roster application — ' + (payload.first_name || '') + ' ' + (payload.last_name || '');
-    var fields = [
-      ['First name',   payload.first_name],
-      ['Last / stage', payload.last_name],
-      ['Email',        payload.email],
-      ['Phone',        payload.phone],
-      ['Platform',     payload.platform],
-      ['Revenue',      payload.revenue],
-      ['Social',       payload.social],
-      ['Track',        payload.track],
-      ['Notes',        payload.notes]
-    ];
-    var body = fields
-      .filter(function (row) { return row[1]; })
-      .map(function (row) { return row[0] + ': ' + row[1]; })
-      .join('\n');
-    return 'mailto:' + encodeURIComponent(to)
-         + '?subject=' + encodeURIComponent(subject.trim())
-         + '&body='    + encodeURIComponent(body);
-  }
-
-  function validateAllFields(form) {
+  function prepareEmail(event, form) {
+    event.preventDefault();
+    var status = form.querySelector('.form-status');
     var firstInvalid = null;
     $$('input, select, textarea', form).forEach(function (field) {
-      if (field.type === 'hidden' || field.name === 'company') return;
-      var msg = fieldMessage(field);
-      setFieldError(field, msg);
-      if (msg && !firstInvalid) firstInvalid = field;
+      var message = fieldMessage(field);
+      setFieldError(field, message);
+      if (message && !firstInvalid) firstInvalid = field;
     });
-    return firstInvalid;
-  }
-
-  function showSuccessCard(form) {
-    var card = document.getElementById('apply-success');
-    if (!card) return false;
-    form.hidden = true;
-    card.hidden = false;
-    try { card.focus(); } catch (_) {}
-    card.scrollIntoView({ behavior: prefersReduced.matches ? 'auto' : 'smooth', block: 'center' });
-    return true;
-  }
-
-  function successMessage(form) {
-    if (form.id === 'news-form') return 'Subscribed. Watch for our quarterly note.';
-    return 'Application received. A partner will reply within seven days. NDA on receipt.';
-  }
-
-  function errorMessage(form) {
-    if (form.id === 'news-form') {
-      return 'We could not subscribe you right now. Email join@elite-mgmt-agency.com and we will add you manually.';
-    }
-    return 'Send failed — we opened your email app so you can send directly. Or write to join@elite-mgmt-agency.com.';
-  }
-
-  function handleSubmit(e, form) {
-    e.preventDefault();
-    var status = form.querySelector('.form-status');
-    var btn    = form.querySelector('button[type="submit"]') || form.querySelector('button:not([type])');
-
-    var firstInvalid = validateAllFields(form);
     if (firstInvalid) {
       setStatus(status, 'error', 'Please complete the highlighted fields.');
-      try { firstInvalid.focus(); } catch (_) {}
+      firstInvalid.focus();
       return;
     }
-
-    // Honeypot — silently succeed for bots (don't tip them off).
-    var trap = form.querySelector('input[name="company"]');
-    if (trap && trap.value && trap.value.trim() !== '') {
-      setStatus(status, 'success', successMessage(form));
-      form.reset();
+    var trap = form.querySelector('[name="company"]');
+    if (trap && trap.value) return;
+    var data = {};
+    new FormData(form).forEach(function (value, key) {
+      data[key] = String(value).trim();
+    });
+    var application = form.id === 'apply-form';
+    var recipient = form.getAttribute('data-mailto-fallback');
+    if (!recipient) {
+      setStatus(status, 'error', 'Please use the email contact link below.');
       return;
     }
-
-    var ts = form.querySelector('input[name="_submitted_at"]');
-    if (ts) ts.value = new Date().toISOString();
-
-    var fd = new FormData(form);
-    var payload = {};
-    fd.forEach(function (v, k) { if (k !== 'company') payload[k] = v; });
-
-    var originalHTML = null;
-    if (btn) {
-      originalHTML = btn.innerHTML;
-      btn.disabled = true;
-      btn.setAttribute('aria-busy', 'true');
-      var label = btn.querySelector('.btn-label');
-      if (label) label.textContent = form.id === 'news-form' ? 'Sending…' : 'Sending application…';
+    var subject = application
+      ? 'Roster application — ' + data.first_name + ' ' + data.last_name
+      : 'Request journal updates';
+    var fields = application
+      ? [
+          ['First name', data.first_name],
+          ['Last or stage name', data.last_name],
+          ['Email', data.email],
+          ['Phone', data.phone],
+          ['Platform', data.platform],
+          ['Monthly revenue range', data.revenue],
+          ['Social', data.social],
+          ['Track', data.track],
+          ['Goals', data.notes],
+          ['Consent', 'I confirm I am 18+ and have read the privacy policy and terms.'],
+        ]
+      : [
+          ['Email', data.email],
+          ['Request', 'Please add me to journal updates.'],
+        ];
+    var body = fields
+      .filter(function (row) {
+        return row[1];
+      })
+      .map(function (row) {
+        return row[0] + ': ' + row[1];
+      })
+      .join('\n\n');
+    var mailto =
+      'mailto:' +
+      recipient +
+      '?subject=' +
+      encodeURIComponent(subject) +
+      '&body=' +
+      encodeURIComponent(body);
+    if (application) {
+      var card = $('#apply-success');
+      var link = $('#application-email-link');
+      var text = $('#application-email-text');
+      if (!card || !link || !text) return;
+      text.value = body;
+      // Long mailto URLs are unreliable across clients; copy remains available.
+      link.href =
+        mailto.length <= 7000
+          ? mailto
+          : 'mailto:' + recipient + '?subject=' + encodeURIComponent(subject);
+      setStatus(
+        $('#application-copy-status'),
+        '',
+        mailto.length > 7000 ? 'Copy the application text into your email draft.' : ''
+      );
+      form.hidden = true;
+      card.hidden = false;
+      card.focus({ preventScroll: true });
+      card.scrollIntoView({
+        behavior: prefersReduced.matches ? 'auto' : 'smooth',
+        block: 'center',
+      });
+    } else {
+      setStatus(
+        status,
+        '',
+        'Your request has not been sent. Open an email draft and press Send in your email app. '
+      );
+      var requestLink = document.createElement('a');
+      requestLink.href = mailto;
+      requestLink.textContent = 'Open email draft';
+      status.appendChild(requestLink);
     }
-    setStatus(status, '', 'Sending…');
-
-    var action = form.getAttribute('action') || '/';
-    var method = (form.getAttribute('method') || 'POST').toUpperCase();
-
-    var fetchOpts = {
-      method: method,
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept':       'application/json'
-      },
-      body: JSON.stringify(payload),
-      credentials: 'same-origin'
-    };
-
-    var ctrl  = (typeof AbortController === 'function') ? new AbortController() : null;
-    if (ctrl) fetchOpts.signal = ctrl.signal;
-    var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 15000) : null;
-
-    var unlockBtn = function () {
-      if (btn) {
-        btn.disabled = false;
-        btn.removeAttribute('aria-busy');
-        if (originalHTML != null) btn.innerHTML = originalHTML;
-      }
-    };
-
-    var onOk = function () {
-      if (timer) clearTimeout(timer);
-      unlockBtn();
-      clearDraft();
-      if (form.id === 'apply-form' && showSuccessCard(form)) {
-        setStatus(status, 'success', '');
-      } else {
-        setStatus(status, 'success', successMessage(form));
-        form.reset();
-        if (ts) ts.value = '';
-      }
-    };
-
-    var onFail = function () {
-      if (timer) clearTimeout(timer);
-      unlockBtn();
-      setStatus(status, 'error', errorMessage(form));
-      if (form.id === 'apply-form') {
-        var mailto = buildMailtoFallback(form, payload);
-        if (mailto) {
-          try { window.location.href = mailto; } catch (_) {}
-        }
-      }
-    };
-
-    if (typeof window.fetch !== 'function') {
-      onFail();
-      return;
-    }
-
-    window.fetch(action, fetchOpts)
-      .then(function (res) { (res && res.ok) ? onOk() : onFail(); })
-      .catch(function () { onFail(); });
   }
 
   /* ──────────────────────────────────────────────────────────────────
@@ -621,18 +575,25 @@
     var els = $$('.reveal');
     if (!els.length) return;
     if (!('IntersectionObserver' in window) || prefersReduced.matches) {
-      els.forEach(function (el) { el.classList.add('in'); });
+      els.forEach(function (el) {
+        el.classList.add('in');
+      });
       return;
     }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
-    els.forEach(function (el) { io.observe(el); });
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: '0px 0px -8% 0px', threshold: 0.06 }
+    );
+    els.forEach(function (el) {
+      io.observe(el);
+    });
   }
 
   /* ──────────────────────────────────────────────────────────────────
@@ -668,7 +629,11 @@
       // Move focus for assistive tech without scrolling twice
       var hadTabindex = target.hasAttribute('tabindex');
       if (!hadTabindex) target.setAttribute('tabindex', '-1');
-      try { target.focus({ preventScroll: true }); } catch (_) { target.focus(); }
+      try {
+        target.focus({ preventScroll: true });
+      } catch (_) {
+        target.focus();
+      }
       if (!hadTabindex) {
         target.addEventListener('blur', function strip() {
           target.removeAttribute('tabindex');
@@ -677,7 +642,11 @@
       }
 
       // Clean URL without polluting history
-      try { history.replaceState(null, '', '#' + id); } catch (_) { /* SecurityError in some sandboxes */ }
+      try {
+        history.replaceState(null, '', '#' + id);
+      } catch (_) {
+        /* SecurityError in some sandboxes */
+      }
     });
   }
 

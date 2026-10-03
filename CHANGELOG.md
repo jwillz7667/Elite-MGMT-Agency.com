@@ -13,21 +13,20 @@ Owner: **Viral Ventures LLC**, Maple Grove, MN.
 
 ### Added
 
+- Ten distinct WaveSpeed Seedream V5.0 Pro fashion, activewear and swimwear images of fictional adult models prompted as age 22, exported as responsive AVIF, WebP and JPEG assets.
+- Self-hosted Inter fallback with its license, alongside the native Apple system font.
+- A resumable image-generation workflow that records paid requests and refuses duplicate submissions.
+- Validated public-only packaging with minified CSS/JS and exact-commit CI deployment gates.
+
 - Hierarchical primary-navigation drawer propagated to every page (homepage
-  + 19 sub-pages + 404). Six section groups — Agency / Services / For
-  creators / Discover / Journal / Company — provide one-tap access to every
-  URL in the property.
+  - 19 sub-pages + 404). Six section groups — Agency / Services / For
+    creators / Discover / Journal / Company — provide one-tap access to every
+    URL in the property.
 - Six-column site-wide footer (Brand · Agency · Services · Discover ·
   Creators · Connect) on every page; SEO landing pages and service
   sub-pages now linked from every footer.
-- Press / media wordmarks rendered as inline SVG type-marks (FORBES,
-  Bloomberg, Businessweek, FORTUNE, The Information, WIRED, Business
-  Insider) in the homepage press section.
-- Fully functional roster-application form: per-field validation
-  (blur + live), required-field markers, character counter, ARIA error
-  messaging, success card with reset, 14-day localStorage draft
-  auto-save with TTL, and `mailto:` fallback via `data-mailto-fallback`
-  for offline / no-backend scenarios.
+- Creator agency selection guidance and links to published resources.
+- Application email preparation with field validation, character counts, accessible errors, reviewable email text, copy controls and an explicit mailto handoff. Delivery is never claimed before the user sends the email. Personal form entries are not persisted.
 - Repository scaffolding for proprietary delivery: `LICENSE`, `README.md`,
   `CONTRIBUTING.md`, `SECURITY.md`, `CHANGELOG.md`.
 - Tooling configs: Prettier, ESLint (flat config), stylelint, html-validate,
@@ -39,6 +38,11 @@ Owner: **Viral Ventures LLC**, Maple Grove, MN.
 - Pull request and issue templates.
 
 ### Changed
+
+- Hero headline to “Build your brand. Own your future.” and clearer creator application calls to action.
+- Corrected service routing, drawer focus and click handling, FAQ state, talent filtering, mobile overflow, image captions, portal/press completeness and truthful privacy/cookie text.
+- Removed unsupported schema ratings, fictional telephone numbers, broken search actions and misleading form delivery confirmations.
+- Local asset cache policy now revalidates stable filenames; source and build checks cover all 21 pages.
 
 - Founding-year copy updated from **2019** to **2020** site-wide
   (visible body copy, `foundingDate` JSON-LD, `datePublished`, copyright

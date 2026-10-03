@@ -132,3 +132,6 @@ extracted/
 
 # ----- Pa11y screenshot output -----
 .pa11y/
+
+# Browser verification artifacts
+.playwright-cli/

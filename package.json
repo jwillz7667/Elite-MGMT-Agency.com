@@ -1,7 +1,7 @@
 {
   "name": "elite-mgmt-agency-web",
   "version": "1.0.0",
-  "description": "Production website for Elite MGMT Agency — a women-only creator management agency. Static HTML/CSS/JS, no build step.",
+  "description": "Static HTML/CSS/JS website for Elite MGMT Agency, with validated public-artifact packaging.",
   "private": true,
   "license": "SEE LICENSE IN ./LICENSE",
   "homepage": "https://elite-mgmt-agency.com",
@@ -19,36 +19,31 @@
     "url": "https://viral-ventures-llc.com"
   },
   "engines": {
-    "node": ">=20",
-    "npm": ">=10"
+    "node": ">=24",
+    "npm": ">=11"
   },
-  "packageManager": "npm@10.8.2",
+  "packageManager": "npm@11.12.1",
   "scripts": {
-    "dev": "serve . --listen 4173 --no-clipboard --single",
-    "preview": "serve . --listen tcp://0.0.0.0:4173 --no-clipboard --single",
-
+    "dev": "npm run build && serve site-dist --listen 4173 --no-clipboard",
+    "preview": "npm run build && serve site-dist --listen tcp://0.0.0.0:4173 --no-clipboard",
     "format": "prettier --write \"**/*.{html,css,js,mjs,json,md,yml,yaml,xml,svg,webmanifest}\"",
     "format:check": "prettier --check \"**/*.{html,css,js,mjs,json,md,yml,yaml,xml,svg,webmanifest}\"",
-
     "lint": "npm run lint:html && npm run lint:css && npm run lint:js",
-    "lint:html": "html-validate \"index.html\" \"404.html\"",
+    "lint:html": "html-validate \"index.html\" \"404.html\" \"{2257,careers,cookies,creator-economy-agency,creator-management-agency-nyc,dmca,fansly-management-agency,journal,ofm-agency-for-women,onlyfans-management-agency,portal,press,privacy,referrals,services,terms}/**/*.html\"",
     "lint:css": "stylelint \"assets/css/**/*.css\"",
-    "lint:js": "eslint \"assets/js/**/*.js\"",
-
+    "lint:js": "eslint \"assets/js/**/*.js\" \"scripts/package-site.mjs\"",
     "validate": "node ./scripts/validate.mjs",
-
     "audit:a11y": "pa11y-ci --config .pa11yci.json",
-    "audit:perf": "lhci autorun --config=.lighthouserc.json",
+    "audit:perf": "npm run build && lhci autorun --config=.lighthouserc.json --collect.staticDistDir=./site-dist",
     "audit": "npm run lint && npm run validate && npm run audit:a11y && npm run audit:perf",
-
-    "check": "npm run format:check && npm run lint && npm run validate",
-
-    "clean": "rimraf .lighthouseci pa11y-results .stylelintcache .eslintcache .prettiercache",
-
-    "prepare": "husky || true"
+    "check": "npm run format:check && npm run lint && npm run build",
+    "clean": "rimraf site-dist .lighthouseci pa11y-results .stylelintcache .eslintcache .prettiercache",
+    "prepare": "husky || true",
+    "build": "node ./scripts/package-site.mjs"
   },
   "devDependencies": {
     "@lhci/cli": "^0.14.0",
+    "esbuild": "0.28.2",
     "eslint": "^9.18.0",
     "html-validate": "^9.3.0",
     "husky": "^9.1.7",

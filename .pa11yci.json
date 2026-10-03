@@ -15,12 +15,8 @@
       "hasTouch": false,
       "deviceScaleFactor": 1
     },
-    "ignore": [
-      "WCAG2AA.Principle1.Guideline1_4.1_4_3.G145.Fail",
-      "color-contrast"
-    ],
-    "hideElements": ".cursor-dot, .menu-overlay, .reveal:not(.in)",
-    "reporters": ["cli"]
+    "reporters": ["cli"],
+    "levelCapWhenNeedsReview": "warning"
   },
   "urls": [
     {

@@ -124,15 +124,15 @@ One logical change per commit. Refactors and behavior changes never share a comm
 
 Every commit must pass:
 
-| Gate | Tool | Command |
-|---|---|---|
-| Format | Prettier 3 | `npm run format:check` |
-| HTML | html-validate (WCAG-aware) | `npm run lint:html` |
-| CSS | stylelint-config-standard | `npm run lint:css` |
-| JS | ESLint (flat config) | `npm run lint:js` |
-| Validate | custom script | `npm run validate` |
-| A11y | Pa11y CI | `npm run audit:a11y` |
-| Perf | Lighthouse CI | `npm run audit:perf` |
+| Gate     | Tool                       | Command                |
+| -------- | -------------------------- | ---------------------- |
+| Format   | Prettier 3                 | `npm run format:check` |
+| HTML     | html-validate (WCAG-aware) | `npm run lint:html`    |
+| CSS      | stylelint-config-standard  | `npm run lint:css`     |
+| JS       | ESLint (flat config)       | `npm run lint:js`      |
+| Validate | custom script              | `npm run validate`     |
+| A11y     | Pa11y CI                   | `npm run audit:a11y`   |
+| Perf     | Lighthouse CI              | `npm run audit:perf`   |
 
 `husky` + `lint-staged` enforce format + lint on `git commit`.
 
@@ -159,14 +159,14 @@ Every commit must pass:
 
 ## Performance Budget
 
-| Metric | Budget | Hard ceiling |
-|---|---|---|
-| LCP (75th percentile, mobile) | ≤ 1.8s | 2.5s |
-| CLS | ≤ 0.05 | 0.1 |
-| TBT | ≤ 100ms | 200ms |
-| HTML transferred | ≤ 25KB gzip | 40KB |
-| JS transferred (first load) | ≤ 8KB gzip | 15KB |
-| Total page weight | ≤ 600KB | 1MB |
+| Metric                        | Budget      | Hard ceiling |
+| ----------------------------- | ----------- | ------------ |
+| LCP (75th percentile, mobile) | ≤ 1.8s      | 2.5s         |
+| CLS                           | ≤ 0.05      | 0.1          |
+| TBT                           | ≤ 100ms     | 200ms        |
+| HTML transferred              | ≤ 25KB gzip | 40KB         |
+| JS transferred (first load)   | ≤ 8KB gzip  | 15KB         |
+| Total page weight             | ≤ 600KB     | 1MB          |
 
 Any change that pushes a metric past its budget needs a Lighthouse CI override
 plus a justification in the PR description.
@@ -177,12 +177,12 @@ plus a justification in the PR description.
 - Never commit secrets. `.env*` and `*.pem` are gitignored — verify with
   `git check-ignore` if unsure.
 - CSP, HSTS, Permissions-Policy, and COOP/CORP headers are non-negotiable.
-- Forms include honeypot fields; the backend additionally rate-limits.
+- Application forms include a honeypot and client validation, then prepare an email draft. No form backend is implemented; validate and rate-limit any future server endpoint.
 
 ## Release Process
 
-1. Merge to `main` triggers the `deploy` workflow.
-2. Cloudflare Pages builds and promotes to production.
+1. Merge to `main` starts CI. The deployment workflow requires successful CI for the exact current main commit.
+2. With hosting credentials configured, the workflow builds and publishes only `site-dist/` to Cloudflare Pages.
 3. Update [CHANGELOG.md](./CHANGELOG.md) for any visible change.
 4. Tag releases that ship a material feature (`v1.x.0`) or patch (`v1.0.x`).
 

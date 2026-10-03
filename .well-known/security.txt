@@ -2,17 +2,13 @@
 # Elite MGMT Agency · Security disclosure policy
 # RFC 9116 — https://www.rfc-editor.org/rfc/rfc9116
 # =============================================================================
-# If you have found a security vulnerability affecting elite-mgmt-agency.com
-# or any sub-property, please report it to the address below. We respond to
-# every legitimate report within one business day and will credit researchers
-# acting in good faith.
+# Report vulnerabilities through the coordinated disclosure policy linked below.
+# Contact and response expectations are maintained in the repository SECURITY.md.
 # =============================================================================
 
-Contact: mailto:security@elite-mgmt-agency.com
-Contact: https://elite-mgmt-agency.com/security/
-Expires: 2027-12-31T23:59:59.000Z
+Contact: mailto:security@viral-ventures-llc.com
+Expires: 2027-10-01T23:59:59.000Z
 Preferred-Languages: en, en-US
 Canonical: https://elite-mgmt-agency.com/.well-known/security.txt
-Policy: https://elite-mgmt-agency.com/security/policy
-Acknowledgments: https://elite-mgmt-agency.com/security/thanks
+Policy: https://github.com/jwillz7667/Elite-MGMT-Agency.com/blob/main/SECURITY.md
 Hiring: https://elite-mgmt-agency.com/careers/

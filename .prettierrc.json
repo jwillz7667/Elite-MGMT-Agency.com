@@ -57,6 +57,12 @@
         "parser": "html",
         "printWidth": 200
       }
+    },
+    {
+      "files": ["*.xml"],
+      "options": {
+        "parser": "html"
+      }
     }
   ]
 }

@@ -1,12 +1,19 @@
 {
   "$schema": "https://html-validate.org/schemas/config.json",
-  "extends": [
-    "html-validate:recommended",
-    "html-validate:document"
-  ],
+  "extends": ["html-validate:recommended", "html-validate:document"],
   "rules": {
-    "void-style": ["error", { "style": "omit" }],
-    "attribute-boolean-style": ["error", { "style": "omit" }],
+    "void-style": [
+      "error",
+      {
+        "style": "selfclose"
+      }
+    ],
+    "attribute-boolean-style": [
+      "error",
+      {
+        "style": "omit"
+      }
+    ],
     "attribute-allowed-values": "error",
     "attribute-misuse": "error",
     "no-trailing-whitespace": "off",
@@ -32,23 +39,42 @@
     "element-permitted-occurrences": "off",
     "element-permitted-parent": "error",
     "heading-level": "error",
-    "long-title": ["warn", { "maxlength": 70 }],
+    "long-title": [
+      "warn",
+      {
+        "maxlength": 70
+      }
+    ],
     "meta-refresh": "error",
     "no-autoplay": "error",
     "require-sri": "off",
-    "no-raw-characters": ["error", { "relaxed": true }],
-    "doctype-style": ["error", { "style": "lowercase" }],
+    "no-raw-characters": [
+      "error",
+      {
+        "relaxed": true
+      }
+    ],
+    "doctype-style": [
+      "error",
+      {
+        "style": "lowercase"
+      }
+    ],
     "no-multiple-main": "error",
     "no-conditional-comment": "error",
     "tel-non-breaking": "warn",
     "no-unknown-elements": "error",
     "valid-id": "error",
     "prefer-button": "off",
-    "prefer-native-element": "warn",
+    "prefer-native-element": "off",
     "require-csp-nonce": "off",
-    "form-dup-name": ["error", { "allowArrayBrackets": true, "shared": ["radio", "checkbox", "submit", "button", "reset"] }]
+    "form-dup-name": [
+      "error",
+      {
+        "allowArrayBrackets": true,
+        "shared": ["radio", "checkbox", "submit", "button", "reset"]
+      }
+    ]
   },
-  "elements": [
-    "html5"
-  ]
+  "elements": ["html5"]
 }

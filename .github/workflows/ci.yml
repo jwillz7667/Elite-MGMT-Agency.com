@@ -66,7 +66,7 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
-      - run: npm run validate
+      - run: npm run build
 
   a11y:
     name: Accessibility (Pa11y)
@@ -79,13 +79,15 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
-      - name: Start static server
+      - run: npm run build
+      - name: Start packaged static server
         run: |
-          npx serve -l 4173 . &
+          npx serve -l 4173 site-dist &
           for i in 1 2 3 4 5 6 7 8 9 10; do
             curl -sSf http://localhost:4173 >/dev/null && break
             sleep 1
           done
+          curl -sSf http://localhost:4173 >/dev/null
       - run: npm run audit:a11y
 
   perf:
