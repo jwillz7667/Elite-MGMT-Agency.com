@@ -16,11 +16,11 @@ This is a continuously deployed static site. We support **only the version
 currently live in production** (`main` branch, deployed to
 `https://elite-mgmt-agency.com`). Older revisions are not maintained.
 
-| Version | Supported |
-|---|---|
-| `main` (production) | Yes |
-| Pre-release tags | No |
-| Forks / mirrors | No |
+| Version             | Supported |
+| ------------------- | --------- |
+| `main` (production) | Yes       |
+| Pre-release tags    | No        |
+| Forks / mirrors     | No        |
 
 ## Scope
 
@@ -116,12 +116,12 @@ The following are known, deliberate trade-offs and are **not** considered vulner
 
 ## Contact
 
-| Purpose | Address |
-|---|---|
-| Security disclosure | `security@viral-ventures-llc.com` |
-| Engineering | `engineering@viral-ventures-llc.com` |
-| Legal | `legal@viral-ventures-llc.com` |
-| Postal | Viral Ventures LLC, Maple Grove, MN, USA |
+| Purpose             | Address                                  |
+| ------------------- | ---------------------------------------- |
+| Security disclosure | `security@viral-ventures-llc.com`        |
+| Engineering         | `engineering@viral-ventures-llc.com`     |
+| Legal               | `legal@viral-ventures-llc.com`           |
+| Postal              | Viral Ventures LLC, Maple Grove, MN, USA |
 
 ---
 

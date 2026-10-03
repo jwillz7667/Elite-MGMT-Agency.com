@@ -1,272 +1,349 @@
 <!doctype html>
 <html lang="en" dir="ltr">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#0A0A0A">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#0A0A0A" />
 
-  <title>Page not found · Elite MGMT Agency</title>
-  <meta name="description" content="The page you were looking for is not here. Head back to the Elite MGMT Agency homepage or apply to the roster.">
-  <link rel="canonical" href="https://elite-mgmt-agency.com/404">
-  <meta name="robots" content="noindex, follow">
+    <title>Page not found · Elite MGMT Agency</title>
+    <meta name="description" content="The page you were looking for is not here. Head back to the Elite MGMT Agency homepage or apply to the roster." />
+    <meta name="robots" content="noindex, follow" />
 
-  <link rel="icon" href="/favicon.ico" sizes="32x32">
-  <link rel="icon" href="/assets/img/logo/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/assets/img/logo/logo-180.png" sizes="180x180">
-  <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/assets/img/logo/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/img/logo/logo-180.png" sizes="180x180" />
+    <link rel="manifest" href="/manifest.webmanifest" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@300;400;500;600&amp;family=Geist+Mono:wght@400;500&amp;display=swap">
-  <link rel="stylesheet" href="/assets/css/styles.css?v=1">
+    <link rel="stylesheet" href="/assets/css/styles.css?v=2" />
 
-  <style>
-    .nf-wrap { min-height: 78vh; padding: clamp(48px, 8vw, 120px) var(--pad-x) 80px; display: flex; flex-direction: column; justify-content: center; gap: 40px; }
-    .nf-code { font-family: var(--mono); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--pink); }
-    .nf-code .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--pink); margin-right: 10px; transform: translateY(-1px); }
-    .nf-title { font-family: var(--display); font-size: clamp(64px, 11vw, 200px); line-height: .86; letter-spacing: -.035em; color: var(--ink); max-width: 14ch; }
-    .nf-title em { font-style: italic; color: var(--pink); }
-    .nf-lede { font-family: var(--display); font-size: clamp(20px, 1.8vw, 26px); line-height: 1.32; color: var(--ink-2); max-width: 56ch; }
-    .nf-lede em { font-style: italic; color: var(--pink); }
-    .nf-cta { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-    .nf-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; border-top: 1px solid var(--line); margin-top: 24px; }
-    .nf-link { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; border-bottom: 1px solid var(--line); color: var(--ink); font-family: var(--sans); font-size: 16px; letter-spacing: -.005em; transition: color .2s ease, padding .2s ease; }
-    .nf-link:hover { color: var(--pink); padding-left: 6px; padding-right: 6px; }
-    .nf-link .ar { font-family: var(--mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--mute); }
-    .nf-link:hover .ar { color: var(--pink); }
-    @media (max-width: 680px) { .nf-links { grid-template-columns: 1fr; } }
-  </style>
-</head>
+    <style>
+      .nf-wrap {
+        min-height: 78vh;
+        padding: clamp(48px, 8vw, 120px) var(--pad-x) 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 40px;
+      }
+      .nf-code {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--pink);
+      }
+      .nf-code .dot {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--pink);
+        margin-right: 10px;
+        transform: translateY(-1px);
+      }
+      .nf-title {
+        font-family: var(--display);
+        font-size: clamp(64px, 11vw, 200px);
+        line-height: 0.86;
+        letter-spacing: -0.035em;
+        color: var(--ink);
+        max-width: 14ch;
+      }
+      .nf-title em {
+        font-style: italic;
+        color: var(--pink);
+      }
+      .nf-lede {
+        font-family: var(--display);
+        font-size: clamp(20px, 1.8vw, 26px);
+        line-height: 1.32;
+        color: var(--ink-2);
+        max-width: 56ch;
+      }
+      .nf-lede em {
+        font-style: italic;
+        color: var(--pink);
+      }
+      .nf-cta {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .nf-links {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 0;
+        border-top: 1px solid var(--line);
+        margin-top: 24px;
+      }
+      .nf-link {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 22px 0;
+        border-bottom: 1px solid var(--line);
+        color: var(--ink);
+        font-family: var(--sans);
+        font-size: 16px;
+        letter-spacing: -0.005em;
+        transition:
+          color 0.2s ease,
+          padding 0.2s ease;
+      }
+      .nf-link:hover {
+        color: var(--pink);
+        padding-left: 6px;
+        padding-right: 6px;
+      }
+      .nf-link .ar {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--mute);
+      }
+      .nf-link:hover .ar {
+        color: var(--pink);
+      }
+      @media (max-width: 680px) {
+        .nf-links {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
 
-<body data-screen-label="404 · Not found">
+  <body data-screen-label="404 · Not found">
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div class="cursor" aria-hidden="true"></div>
 
-  <a class="skip-link" href="#main">Skip to main content</a>
-  <div class="cursor" aria-hidden="true"></div>
-
-  <div class="announce" role="region" aria-label="Agency announcements">
-    <div class="announce-track" aria-hidden="true">
-      <span><b>Lost the page</b><i class="bullet"></i></span>
-      <span>You came here looking for something — let us help<i class="bullet"></i></span>
-      <span>Now onboarding · Q3 2026<i class="bullet"></i></span>
-      <span>$38M+ creator revenue managed · last 12 mo<i class="bullet"></i></span>
-      <span><b>Lost the page</b><i class="bullet"></i></span>
-      <span>You came here looking for something — let us help<i class="bullet"></i></span>
-      <span>Now onboarding · Q3 2026<i class="bullet"></i></span>
-      <span>$38M+ creator revenue managed · last 12 mo<i class="bullet"></i></span>
+    <div class="announce" role="region" aria-label="Agency announcements">
+      <div class="announce-track" aria-hidden="true">
+        <span><b>Lost the page</b><i class="bullet"></i></span>
+        <span>You came here looking for something — let us help<i class="bullet"></i></span>
+        <span>Creator applications open<i class="bullet"></i></span>
+        <span>$38M+ creator revenue managed · last 12 mo<i class="bullet"></i></span>
+        <span><b>Lost the page</b><i class="bullet"></i></span>
+        <span>You came here looking for something — let us help<i class="bullet"></i></span>
+        <span>Creator applications open<i class="bullet"></i></span>
+        <span>$38M+ creator revenue managed · last 12 mo<i class="bullet"></i></span>
+      </div>
     </div>
-  </div>
 
-  <header class="nav" role="banner">
-    <a class="nav-brand" href="/" aria-label="Elite MGMT Agency — Home">
-      <img src="/assets/img/logo/logo-64.png" srcset="/assets/img/logo/logo-64.png 1x, /assets/img/logo/logo-128.png 2x" alt="" width="30" height="30" decoding="async">
-      <span class="b-text">
-        <b>Elite MGMT</b>
-        <small>Creator agency · est. 2020</small>
-      </span>
-    </a>
-    <div class="nav-right">
-      <span class="nav-locale">NYC · EST 2020</span>
-      <a class="btn btn-pink nav-apply" href="/#apply">Apply to join
-        <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </a>
-      <a class="btn nav-home" href="/">Home</a>
-      <button class="menu-trigger" type="button" aria-label="Open primary navigation menu" aria-expanded="false" aria-controls="side-menu">
-        <span class="m-bars" aria-hidden="true"><span></span><span></span></span>
-        <span class="m-label">Menu</span>
-      </button>
-    </div>
-  </header>
-  <!-- =====================================================================
-       SIDE DRAWER (PRIMARY NAV)
-       ===================================================================== -->
-  <div class="menu-overlay" hidden></div>
-  <aside class="side-menu" id="side-menu" aria-hidden="true" aria-label="Primary navigation" tabindex="-1">
-    <div class="side-head">
-      <a class="nav-brand" href="/" aria-label="Elite MGMT Agency — Home">
-        <img src="/assets/img/logo/logo-64.png" alt="" width="30" height="30" decoding="async">
+    <header class="nav">
+      <a class="nav-brand" href="/">
+        <img src="/assets/img/logo/logo-64.png" srcset="/assets/img/logo/logo-64.png 1x, /assets/img/logo/logo-128.png 2x" alt="" width="30" height="30" decoding="async" />
         <span class="b-text">
           <b>Elite MGMT</b>
           <small>Creator agency · est. 2020</small>
         </span>
       </a>
-      <button class="menu-close" type="button" aria-label="Close primary navigation menu">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M18 6L6 18M6 6l12 12"/></svg>
-      </button>
-    </div>
-
-    <nav class="side-links" aria-label="Primary">
-      <h4 class="side-group">Agency</h4>
-      <a href="/"><span class="lk">Home</span><span class="ar" aria-hidden="true">→</span></a>
-      <a href="/#about"><span class="lk">The Numbers</span><span class="ar" aria-hidden="true">→</span></a>
-      <a href="/#creators"><span class="lk">Roster</span><span class="ar" aria-hidden="true">→</span></a>
-      <a href="/#results"><span class="lk">Results</span><span class="ar" aria-hidden="true">→</span></a>
-      <a href="/#process"><span class="lk">Process</span><span class="ar" aria-hidden="true">→</span></a>
-
-      <h4 class="side-group">Services</h4>
-      <a href="/services/"><span class="lk">All services</span><span class="ar" aria-hidden="true">→</span></a>
-      <a href="/services/chat-operations/"><span class="lk">Chat operations</span><span class="ar" aria-hidden="true">→</span></a>
-      <a href="/services/marketing/"><span class="lk">Marketing &amp; growth</span><span class="ar" aria-hidden="true">→</span></a>
-
-      <h4 class="side-group">For creators</h4>
-      <a href="/#apply"><span class="lk">Apply to the roster</span><span class="ar" aria-hidden="true">→</span></a>
-      <a href="/portal/"><span class="lk">Creator portal</span><span class="ar" aria-hidden="true">→</span></a>
-      <a href="/referrals/"><span class="lk">Referral program</span><span class="ar" aria-hidden="true">→</span></a>
-
-      <h4 class="side-group">Discover</h4>
-      <a href="/onlyfans-management-agency/"><span class="lk">OnlyFans management</span><span class="ar" aria-hidden="true">→</span></a>
-      <a href="/ofm-agency-for-women/"><span class="lk">OFM agency for women</span><span class="ar" aria-hidden="true">→</span></a>
-      <a href="/creator-management-agency-nyc/"><span class="lk">Creator agency NYC</span><span class="ar" aria-hidden="true">→</span></a>
-      <a href="/fansly-management-agency/"><span class="lk">Fansly management</span><span class="ar" aria-hidden="true">→</span></a>
-      <a href="/creator-economy-agency/"><span class="lk">Creator economy</span><span class="ar" aria-hidden="true">→</span></a>
-
-      <h4 class="side-group">Journal</h4>
-      <a href="/journal/"><span class="lk">All entries</span><span class="ar" aria-hidden="true">→</span></a>
-      <a href="/journal/scale-onlyfans-2026/"><span class="lk">Scale OnlyFans · 2026</span><span class="ar" aria-hidden="true">→</span></a>
-
-      <h4 class="side-group">Company</h4>
-      <a href="/press/"><span class="lk">Press kit</span><span class="ar" aria-hidden="true">→</span></a>
-      <a href="/careers/"><span class="lk">Careers</span><span class="ar" aria-hidden="true">→</span></a>
-    </nav>
-
-    <div class="side-foot">
-      <a class="btn btn-pink btn-lg side-cta" href="/#apply">
-        Apply to join the roster
-        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </a>
-      <div class="side-meta">
-        <div>
-          <span class="k">Bookings</span>
-          <a href="mailto:join@elite-mgmt-agency.com">join@elite-mgmt-agency.com</a>
-        </div>
-        <div>
-          <span class="k">Press</span>
-          <a href="mailto:press@elite-mgmt-agency.com">press@elite-mgmt-agency.com</a>
-        </div>
-        <div>
-          <span class="k">New York</span>
-          <span>11 Mercer St · 4F</span>
-        </div>
-      </div>
-      <ul class="side-socials" aria-label="Social media">
-        <li><a href="https://instagram.com/elitemgmt.agency" rel="me noopener" target="_blank">Instagram</a></li>
-        <li><a href="https://tiktok.com/@elitemgmt.agency" rel="me noopener" target="_blank">TikTok</a></li>
-        <li><a href="https://x.com/elitemgmt" rel="me noopener" target="_blank">X</a></li>
-        <li><a href="https://www.linkedin.com/company/elite-mgmt-agency" rel="me noopener" target="_blank">LinkedIn</a></li>
-      </ul>
-    </div>
-  </aside>
-
-
-  <main id="main">
-    <section class="nf-wrap" aria-labelledby="nf-title">
-      <p class="nf-code"><span class="dot" aria-hidden="true"></span>Error · 404 · Page not found</p>
-
-      <h1 class="nf-title" id="nf-title">
-        We <em>lost</em><br>
-        this one.
-      </h1>
-
-      <p class="nf-lede">
-        The page you were looking for is not here — moved, renamed, or never existed in the first place. <em>Try one of the links below,</em> or head straight back to the homepage. If you came here from a broken link on our site, email <a href="mailto:hello@elite-mgmt-agency.com" style="color:var(--pink);text-decoration:underline">hello@elite-mgmt-agency.com</a> and we'll fix it.
-      </p>
-
-      <div class="nf-cta">
-        <a class="btn btn-pink btn-lg" href="/">
-          Back to home
-          <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      <div class="nav-right">
+        <span class="nav-locale">NYC · EST 2020</span>
+        <a class="btn btn-pink nav-apply" href="/#apply"
+          >Apply to join
+          <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
         </a>
-        <a class="btn btn-lg" href="/#apply">Apply to the roster</a>
-        <a class="btn btn-lg" href="/#contact">Talk to a partner</a>
+        <a class="btn nav-home" href="/">Home</a>
+        <button class="menu-trigger" type="button" aria-label="Open primary navigation menu" aria-expanded="false" aria-controls="side-menu">
+          <span class="m-bars" aria-hidden="true"><span></span><span></span></span>
+          <span class="m-label">Menu</span>
+        </button>
+      </div>
+    </header>
+    <!-- =====================================================================
+       SIDE DRAWER (PRIMARY NAV)
+       ===================================================================== -->
+    <div class="menu-overlay" hidden></div>
+    <aside class="side-menu" id="side-menu" aria-hidden="true" inert aria-label="Primary navigation" tabindex="-1">
+      <div class="side-head">
+        <a class="nav-brand" href="/">
+          <img src="/assets/img/logo/logo-64.png" alt="" width="30" height="30" decoding="async" />
+          <span class="b-text">
+            <b>Elite MGMT</b>
+            <small>Creator agency · est. 2020</small>
+          </span>
+        </a>
+        <button class="menu-close" type="button" aria-label="Close primary navigation menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M18 6L6 18M6 6l12 12" /></svg>
+        </button>
       </div>
 
-      <nav class="nf-links" aria-label="Common destinations">
-        <a class="nf-link" href="/#creators"><span>The roster</span><span class="ar">03 / 09 →</span></a>
-        <a class="nf-link" href="/#results"><span>Recent results</span><span class="ar">07 / 09 →</span></a>
-        <a class="nf-link" href="/#services"><span>Our six services</span><span class="ar">05 / 09 →</span></a>
-        <a class="nf-link" href="/#process"><span>From application to scale</span><span class="ar">— →</span></a>
-        <a class="nf-link" href="/#journal"><span>The Journal</span><span class="ar">09 / 09 →</span></a>
-        <a class="nf-link" href="/#contact"><span>Get in touch</span><span class="ar">— →</span></a>
-      </nav>
-    </section>
-  </main>
+      <nav class="side-links" aria-label="Primary">
+        <p class="side-group-heading">Agency</p>
+        <a href="/"><span class="lk">Home</span><span class="ar" aria-hidden="true">→</span></a>
+        <a href="/#about"><span class="lk">The Numbers</span><span class="ar" aria-hidden="true">→</span></a>
+        <a href="/#creators"><span class="lk">Roster</span><span class="ar" aria-hidden="true">→</span></a>
+        <a href="/#results"><span class="lk">Results</span><span class="ar" aria-hidden="true">→</span></a>
+        <a href="/#process"><span class="lk">Process</span><span class="ar" aria-hidden="true">→</span></a>
 
-  <footer aria-label="Site footer">
-    <div class="foot-grid">
-      <div class="foot-brand">
-        <img src="/assets/img/logo/logo-64.png" srcset="/assets/img/logo/logo-64.png 1x, /assets/img/logo/logo-128.png 2x" alt="" width="44" height="44" decoding="async">
-        <p class="foot-brand-name">Elite MGMT Agency</p>
-        <p>Women-only creator management agency. Independent, partner-owned, US-headquartered. New York since 2020.</p>
-      </div>
-      <nav class="foot-col" aria-label="Agency">
-        <h3>Agency</h3>
-        <ul>
-          <li><a href="/#about">The numbers</a></li>
-          <li><a href="/#creators">Roster</a></li>
-          <li><a href="/#results">Case studies</a></li>
-          <li><a href="/#process">Process</a></li>
-          <li><a href="/press/">Press kit</a></li>
-          <li><a href="/careers/">Careers</a></li>
-        </ul>
+        <p class="side-group-heading">Services</p>
+        <a href="/services/"><span class="lk">All services</span><span class="ar" aria-hidden="true">→</span></a>
+        <a href="/services/chat-operations/"><span class="lk">Chat operations</span><span class="ar" aria-hidden="true">→</span></a>
+        <a href="/services/marketing/"><span class="lk">Marketing &amp; growth</span><span class="ar" aria-hidden="true">→</span></a>
+
+        <p class="side-group-heading">For creators</p>
+        <a href="/#apply"><span class="lk">Apply to the roster</span><span class="ar" aria-hidden="true">→</span></a>
+        <a href="/portal/"><span class="lk">Creator portal</span><span class="ar" aria-hidden="true">→</span></a>
+        <a href="/referrals/"><span class="lk">Referral program</span><span class="ar" aria-hidden="true">→</span></a>
+
+        <p class="side-group-heading">Discover</p>
+        <a href="/onlyfans-management-agency/"><span class="lk">OnlyFans management</span><span class="ar" aria-hidden="true">→</span></a>
+        <a href="/ofm-agency-for-women/"><span class="lk">OFM agency for women</span><span class="ar" aria-hidden="true">→</span></a>
+        <a href="/creator-management-agency-nyc/"><span class="lk">Creator agency NYC</span><span class="ar" aria-hidden="true">→</span></a>
+        <a href="/fansly-management-agency/"><span class="lk">Fansly management</span><span class="ar" aria-hidden="true">→</span></a>
+        <a href="/creator-economy-agency/"><span class="lk">Creator economy</span><span class="ar" aria-hidden="true">→</span></a>
+
+        <p class="side-group-heading">Journal</p>
+        <a href="/journal/"><span class="lk">All entries</span><span class="ar" aria-hidden="true">→</span></a>
+        <a href="/journal/scale-onlyfans-2026/"><span class="lk">Scale OnlyFans · 2026</span><span class="ar" aria-hidden="true">→</span></a>
+
+        <p class="side-group-heading">Company</p>
+        <a href="/press/"><span class="lk">Press kit</span><span class="ar" aria-hidden="true">→</span></a>
+        <a href="/careers/"><span class="lk">Careers</span><span class="ar" aria-hidden="true">→</span></a>
       </nav>
-      <nav class="foot-col" aria-label="Services">
-        <h3>Services</h3>
-        <ul>
-          <li><a href="/services/">All services</a></li>
-          <li><a href="/services/chat-operations/">Chat operations</a></li>
-          <li><a href="/services/marketing/">Marketing &amp; growth</a></li>
-          <li><a href="/#services">Content production</a></li>
-          <li><a href="/#services">Brand &amp; legal / DMCA</a></li>
-        </ul>
-      </nav>
-      <nav class="foot-col" aria-label="Discover">
-        <h3>Discover</h3>
-        <ul>
-          <li><a href="/onlyfans-management-agency/">OnlyFans management</a></li>
-          <li><a href="/ofm-agency-for-women/">OFM agency for women</a></li>
-          <li><a href="/creator-management-agency-nyc/">Creator agency · NYC</a></li>
-          <li><a href="/fansly-management-agency/">Fansly management</a></li>
-          <li><a href="/creator-economy-agency/">Creator economy</a></li>
-          <li><a href="/journal/">Journal</a></li>
-        </ul>
-      </nav>
-      <nav class="foot-col" aria-label="Creators">
-        <h3>Creators</h3>
-        <ul>
-          <li><a href="/#apply">Apply to the roster</a></li>
-          <li><a href="/portal/">Creator portal</a></li>
-          <li><a href="/referrals/">Referral program</a></li>
-          <li><a href="/journal/scale-onlyfans-2026/">Scale OnlyFans · 2026</a></li>
-          <li><a href="/#faq">FAQ</a></li>
-        </ul>
-      </nav>
-      <nav class="foot-col" aria-label="Connect">
-        <h3>Connect</h3>
-        <ul>
-          <li><a href="mailto:join@elite-mgmt-agency.com">join@elite-mgmt-agency.com</a></li>
-          <li><a href="mailto:press@elite-mgmt-agency.com">press@elite-mgmt-agency.com</a></li>
-          <li><a href="tel:+12125550142">+1 212 555 0142</a></li>
+
+      <div class="side-foot">
+        <a class="btn btn-pink btn-lg side-cta" href="/#apply">
+          Apply to join the roster
+          <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
+        </a>
+        <div class="side-meta">
+          <div>
+            <span class="k">Bookings</span>
+            <a href="mailto:join@elite-mgmt-agency.com">join@elite-mgmt-agency.com</a>
+          </div>
+          <div>
+            <span class="k">Press</span>
+            <a href="mailto:press@elite-mgmt-agency.com">press@elite-mgmt-agency.com</a>
+          </div>
+          <div>
+            <span class="k">New York</span>
+            <span>11 Mercer St · 4F</span>
+          </div>
+        </div>
+        <ul class="side-socials">
           <li><a href="https://instagram.com/elitemgmt.agency" rel="me noopener" target="_blank">Instagram</a></li>
           <li><a href="https://tiktok.com/@elitemgmt.agency" rel="me noopener" target="_blank">TikTok</a></li>
-          <li><a href="https://x.com/elitemgmt" rel="me noopener" target="_blank">X / Twitter</a></li>
+          <li><a href="https://x.com/elitemgmt" rel="me noopener" target="_blank">X</a></li>
           <li><a href="https://www.linkedin.com/company/elite-mgmt-agency" rel="me noopener" target="_blank">LinkedIn</a></li>
         </ul>
-      </nav>
-    </div>
-    <p class="foot-massive" aria-hidden="true">Elite <em>MGMT</em></p>
+      </div>
+    </aside>
 
-    <div class="foot-bottom">
-      <p>© 2020–2026 Elite MGMT Agency, Inc. · 11 Mercer St, 4F · New York, NY 10013 · 18+ creators only</p>
-      <nav class="legal" aria-label="Legal">
-        <a href="/privacy/">Privacy</a>
-        <a href="/terms/">Terms</a>
-        <a href="/cookies/">Cookies</a>
-        <a href="/dmca/">DMCA</a>
-        <a href="/sitemap.xml">Sitemap</a>
-      </nav>
-    </div>
-  </footer>
+    <main id="main">
+      <section class="nf-wrap" aria-labelledby="nf-title">
+        <p class="nf-code"><span class="dot" aria-hidden="true"></span>Error · 404 · Page not found</p>
 
-  <script src="/assets/js/app.js?v=1" defer></script>
-</body>
+        <h1 class="nf-title" id="nf-title">
+          We <em>lost</em><br />
+          this one.
+        </h1>
+
+        <p class="nf-lede">
+          The page you were looking for is not here — moved, renamed, or never existed in the first place. <em>Try one of the links below,</em> or head straight back to the homepage. If you came here
+          from a broken link on our site, email <a href="mailto:hello@elite-mgmt-agency.com" style="color: var(--pink); text-decoration: underline">hello@elite-mgmt-agency.com</a> and we'll fix it.
+        </p>
+
+        <div class="nf-cta">
+          <a class="btn btn-pink btn-lg" href="/">
+            Back to home
+            <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a class="btn btn-lg" href="/#apply">Apply to the roster</a>
+          <a class="btn btn-lg" href="/#contact">Talk to a partner</a>
+        </div>
+
+        <nav class="nf-links" aria-label="Common destinations">
+          <a class="nf-link" href="/#creators"><span>The roster</span><span class="ar">03 / 09 →</span></a>
+          <a class="nf-link" href="/#results"><span>Recent results</span><span class="ar">07 / 09 →</span></a>
+          <a class="nf-link" href="/#services"><span>Our six services</span><span class="ar">05 / 09 →</span></a>
+          <a class="nf-link" href="/#process"><span>From application to scale</span><span class="ar">— →</span></a>
+          <a class="nf-link" href="/#journal"><span>The Journal</span><span class="ar">09 / 09 →</span></a>
+          <a class="nf-link" href="/#contact"><span>Get in touch</span><span class="ar">— →</span></a>
+        </nav>
+      </section>
+    </main>
+
+    <footer aria-label="Site footer">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <img src="/assets/img/logo/logo-64.png" srcset="/assets/img/logo/logo-64.png 1x, /assets/img/logo/logo-128.png 2x" alt="" width="44" height="44" decoding="async" />
+          <p class="foot-brand-name">Elite MGMT Agency</p>
+          <p>Women-only creator management agency. Independent, partner-owned, US-headquartered. New York since 2020.</p>
+        </div>
+        <nav class="foot-col" aria-label="Agency">
+          <h2>Agency</h2>
+          <ul>
+            <li><a href="/#about">The numbers</a></li>
+            <li><a href="/#creators">Roster</a></li>
+            <li><a href="/#results">Case studies</a></li>
+            <li><a href="/#process">Process</a></li>
+            <li><a href="/press/">Press kit</a></li>
+            <li><a href="/careers/">Careers</a></li>
+          </ul>
+        </nav>
+        <nav class="foot-col" aria-label="Services">
+          <h2>Services</h2>
+          <ul>
+            <li><a href="/services/">All services</a></li>
+            <li><a href="/services/chat-operations/">Chat operations</a></li>
+            <li><a href="/services/marketing/">Marketing &amp; growth</a></li>
+            <li><a href="/#services">Content production</a></li>
+            <li><a href="/#services">Brand &amp; legal / DMCA</a></li>
+          </ul>
+        </nav>
+        <nav class="foot-col" aria-label="Discover">
+          <h2>Discover</h2>
+          <ul>
+            <li><a href="/onlyfans-management-agency/">OnlyFans management</a></li>
+            <li><a href="/ofm-agency-for-women/">OFM agency for women</a></li>
+            <li><a href="/creator-management-agency-nyc/">Creator agency · NYC</a></li>
+            <li><a href="/fansly-management-agency/">Fansly management</a></li>
+            <li><a href="/creator-economy-agency/">Creator economy</a></li>
+            <li><a href="/journal/">Journal</a></li>
+          </ul>
+        </nav>
+        <nav class="foot-col" aria-label="Creators">
+          <h2>Creators</h2>
+          <ul>
+            <li><a href="/#apply">Apply to the roster</a></li>
+            <li><a href="/portal/">Creator portal</a></li>
+            <li><a href="/referrals/">Referral program</a></li>
+            <li><a href="/journal/scale-onlyfans-2026/">Scale OnlyFans · 2026</a></li>
+            <li><a href="/#faq">FAQ</a></li>
+          </ul>
+        </nav>
+        <nav class="foot-col" aria-label="Connect">
+          <h2>Connect</h2>
+          <ul>
+            <li><a href="mailto:join@elite-mgmt-agency.com">join@elite-mgmt-agency.com</a></li>
+            <li><a href="mailto:press@elite-mgmt-agency.com">press@elite-mgmt-agency.com</a></li>
+            <li><a href="https://instagram.com/elitemgmt.agency" rel="me noopener" target="_blank">Instagram</a></li>
+            <li><a href="https://tiktok.com/@elitemgmt.agency" rel="me noopener" target="_blank">TikTok</a></li>
+            <li><a href="https://x.com/elitemgmt" rel="me noopener" target="_blank">X / Twitter</a></li>
+            <li><a href="https://www.linkedin.com/company/elite-mgmt-agency" rel="me noopener" target="_blank">LinkedIn</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="foot-massive" aria-hidden="true">Elite <em>MGMT</em></p>
+
+      <div class="foot-bottom">
+        <p>© 2020–2026 Elite MGMT Agency, Inc. · 11 Mercer St, 4F · New York, NY 10013 · 18+ creators only</p>
+        <nav class="legal" aria-label="Legal">
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
+          <a href="/cookies/">Cookies</a>
+          <a href="/dmca/">DMCA</a>
+          <a href="/sitemap.xml">Sitemap</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="/assets/js/app.js?v=2" defer></script>
+  </body>
 </html>

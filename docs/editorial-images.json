@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "provider": "WaveSpeedAI",
+  "model": "bytedance/seedream-v5.0-pro",
+  "defaults": {
+    "resolution": "2k",
+    "output_format": "jpeg",
+    "prompt_optimization_mode": "standard"
+  },
+  "images": [
+    {
+      "id": "growth-story",
+      "aspect_ratio": "4:5",
+      "placement": "Lifestyle growth editorial; replace repeated portrait in the first campaign card",
+      "alt_text": "AI-generated fashion editorial of an adult woman in a fitted black dress in a city loft",
+      "prompt": "Photoreal premium fashion campaign photograph of one fictional, clearly adult 22-year-old woman. Natural curvy hourglass proportions, realistic anatomy, confident expression, authentic skin texture, clean garment detail, editorial photography rather than an illustration. She is an invented adult model, not a celebrity or verified agency client. All clothing is opaque; no nudity. Single finished photograph with no text, branding, logos or watermark. Latina model with warm olive skin and long chestnut waves, wearing a fitted black sleeveless square-neck mini dress. Standing in a refined city loft, body turned slightly sideways, looking toward camera, hands relaxed. Frame from head to just below knees with generous headroom. Soft late afternoon window light, charcoal architectural background and muted rose accents."
+    },
+    {
+      "id": "glamour-story",
+      "aspect_ratio": "4:5",
+      "placement": "Glamour editorial; replace repeated portrait in the retention campaign card",
+      "alt_text": "AI-generated fashion editorial of an adult woman in a champagne satin dress",
+      "prompt": "Photoreal premium fashion campaign photograph of one fictional, clearly adult 22-year-old woman. Natural curvy hourglass proportions, realistic anatomy, confident expression, authentic skin texture, clean garment detail, editorial photography rather than an illustration. She is an invented adult model, not a celebrity or verified agency client. All clothing is opaque; no nudity. Single finished photograph with no text, branding, logos or watermark. South Asian model with warm brown skin and long glossy black hair, wearing a fitted champagne satin sleeveless evening dress with a simple scoop neckline. Standing in a softly lit hotel lounge, elegant three-quarter side pose, one hand resting on the chair back. Frame from head to knees with comfortable space. Warm amber lighting, dark background, realistic satin texture."
+    },
+    {
+      "id": "fitness-story",
+      "aspect_ratio": "4:5",
+      "placement": "Fitness production editorial; replace repeated portrait in the fitness campaign card",
+      "alt_text": "AI-generated activewear editorial of an adult woman in a pink sports bra and leggings",
+      "prompt": "Photoreal premium fashion campaign photograph of one fictional, clearly adult 22-year-old woman. Natural curvy hourglass proportions, realistic anatomy, confident expression, authentic skin texture, clean garment detail, editorial photography rather than an illustration. She is an invented adult model, not a celebrity or verified agency client. All clothing is opaque; no nudity. Single finished photograph with no text, branding, logos or watermark. Black model with deep brown skin and a high natural curly ponytail, wearing a fitted dusty-pink sports bra and high-waisted matching yoga leggings. Standing in a minimalist training studio in a relaxed three-quarter pose, holding a plain water bottle at her side. Frame the entire figure with a little space around her, face clearly visible. Soft morning light, muted charcoal and warm rose background."
+    },
+    {
+      "id": "application-portrait",
+      "aspect_ratio": "4:5",
+      "placement": "Homepage application panel; replace reused roster portrait",
+      "alt_text": "AI-generated swimwear editorial of an adult woman beside a resort pool",
+      "prompt": "Photoreal premium fashion campaign photograph of one fictional, clearly adult 22-year-old woman. Natural curvy hourglass proportions, realistic anatomy, confident expression, authentic skin texture, clean garment detail, editorial photography rather than an illustration. She is an invented adult model, not a celebrity or verified agency client. All clothing is opaque; no nudity. Single finished photograph with no text, branding, logos or watermark. White model with warm lightly freckled skin and shoulder-length dark blonde waves, wearing a plain black two-piece bikini with standard swimwear coverage. Standing naturally beside a quiet resort pool with a pale stone terrace, friendly confident expression and relaxed hands. Frame the entire figure with comfortable headroom. Bright soft daylight, blue water, charcoal architectural shade and muted warm highlights. Mainstream swimwear fashion campaign."
+    },
+    {
+      "id": "testimonial-editorial",
+      "aspect_ratio": "4:5",
+      "placement": "Illustrative testimonial section visual; never identify this model as the quotation speaker",
+      "alt_text": "AI-generated activewear editorial of an adult woman in charcoal sportswear",
+      "prompt": "Photoreal premium fashion campaign photograph of one fictional, clearly adult 22-year-old woman. Natural curvy hourglass proportions, realistic anatomy, confident expression, authentic skin texture, clean garment detail, editorial photography rather than an illustration. She is an invented adult model, not a celebrity or verified agency client. All clothing is opaque; no nudity. Single finished photograph with no text, branding, logos or watermark. Latina model with warm tan skin and dark brown ponytail, wearing a charcoal racerback sports bra and high-waisted fitted yoga leggings. Standing near a studio window, a relaxed three-quarter rear angle with her shoulders gently turned so her adult face is visible. Frame the entire figure with breathing space. Soft daylight and an understated warm neutral training studio. This is illustrative mood photography and must not imply she is a testimonial speaker."
+    },
+    {
+      "id": "journal-growth",
+      "aspect_ratio": "4:3",
+      "placement": "Journal growth article thumbnail; replace reused hero image",
+      "alt_text": "AI-generated swimwear editorial of an adult woman on a quiet beach",
+      "prompt": "Photoreal premium fashion campaign photograph of one fictional, clearly adult 22-year-old woman. Natural curvy hourglass proportions, realistic anatomy, confident expression, authentic skin texture, clean garment detail, editorial photography rather than an illustration. She is an invented adult model, not a celebrity or verified agency client. All clothing is opaque; no nudity. Single finished photograph with no text, branding, logos or watermark. East Asian model with warm skin and long dark flowing hair, wearing a muted rose two-piece bikini with standard swimwear coverage. Standing naturally on a quiet pale sand beach beside a resort, gaze toward camera, relaxed posture and hands. Landscape photograph showing the figure from head to just below knees, positioned slightly right of center, negative space on the left. Diffused golden morning light, sea softly blurred. Mainstream swimwear campaign."
+    },
+    {
+      "id": "journal-marketing",
+      "aspect_ratio": "4:3",
+      "placement": "Journal marketing article thumbnail; replace placeholder artwork",
+      "alt_text": "AI-generated fashion editorial of an adult woman in a fitted pink dress on a rooftop",
+      "prompt": "Photoreal premium fashion campaign photograph of one fictional, clearly adult 22-year-old woman. Natural curvy hourglass proportions, realistic anatomy, confident expression, authentic skin texture, clean garment detail, editorial photography rather than an illustration. She is an invented adult model, not a celebrity or verified agency client. All clothing is opaque; no nudity. Single finished photograph with no text, branding, logos or watermark. Black model with warm brown skin and shoulder-length curly hair, wearing a fitted rose-pink sleeveless midi dress with a square neckline. Standing on a rooftop terrace at golden hour, relaxed three-quarter side angle with face toward camera and hands resting naturally by her sides. Landscape frame from head to below knees, keep the subject comfortably inside the crop. Warm skyline bokeh and realistic skin and fabric."
+    },
+    {
+      "id": "journal-chat",
+      "aspect_ratio": "4:3",
+      "placement": "Journal chat-operations article thumbnail; replace placeholder artwork",
+      "alt_text": "AI-generated activewear editorial of an adult woman in a cream sports bra and black leggings",
+      "prompt": "Photoreal premium fashion campaign photograph of one fictional, clearly adult 22-year-old woman. Natural curvy hourglass proportions, realistic anatomy, confident expression, authentic skin texture, clean garment detail, editorial photography rather than an illustration. She is an invented adult model, not a celebrity or verified agency client. All clothing is opaque; no nudity. Single finished photograph with no text, branding, logos or watermark. South Asian model with golden brown skin and dark hair in a ponytail, wearing a fitted cream sports bra and black high-waisted yoga leggings. Standing in a warm modern fitness studio, relaxed side angle and face toward camera, one hand casually holding a rolled yoga mat. Landscape frame from head to below knees, comfortable headroom and natural hands. Warm window light, neutral wood and charcoal details."
+    },
+    {
+      "id": "roster-glamour",
+      "aspect_ratio": "4:5",
+      "placement": "Distinct editorial image for the Soraya glamour roster card",
+      "alt_text": "AI-generated fashion portrait of an adult woman in a fitted burgundy dress",
+      "prompt": "Photoreal premium fashion campaign photograph of one fictional, clearly adult 22-year-old woman. Natural curvy hourglass proportions, realistic anatomy, confident expression, authentic skin texture, clean garment detail. She is an invented adult model, not a celebrity or verified agency client. All clothing is opaque; no nudity. Single finished photograph with no text, branding, logos or watermark. Middle Eastern woman with warm olive skin, brown eyes and long dark wavy hair. She wears a fitted burgundy sleeveless square-neck dress in a softly lit contemporary hotel lounge. Relaxed three-quarter side pose with her face toward camera and both hands natural. Frame from head to below knees with comfortable headroom, no face clipping. Dark charcoal walls, warm window light, muted pink details, realistic photographic skin and fabric."
+    },
+    {
+      "id": "roster-fitness",
+      "aspect_ratio": "4:5",
+      "placement": "Distinct editorial image for the Aleks fitness roster card",
+      "alt_text": "AI-generated fitness portrait of an adult woman in a charcoal sports bra and leggings",
+      "prompt": "Photoreal premium fashion campaign photograph of one fictional, clearly adult 22-year-old woman. Natural curvy hourglass proportions, realistic anatomy, confident expression, authentic skin texture, clean garment detail. She is an invented adult model, not a celebrity or verified agency client. All clothing is opaque; no nudity. Single finished photograph with no text, branding, logos or watermark. White woman with warm freckled skin, green eyes, auburn hair in a high ponytail. She wears a fitted charcoal sports bra and high-waisted matching yoga leggings in a modern minimalist studio. Relaxed three-quarter side angle, face and both shoulders clearly visible toward camera, hands relaxed at her sides. Frame from head to below knees with comfortable headroom, no face clipping. Soft warm morning window light and rose accents, athletic fashion campaign, believable skin and garment texture."
+    }
+  ]
+}

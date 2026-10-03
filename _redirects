@@ -15,15 +15,13 @@
 /apply         /#apply           301
 /contact       /#contact         301
 /Contact       /#contact         301
-/services      /#services        301
-/Services      /#services        301
+/Services      /services/        301
 /creators      /#creators        301
 /roster        /#creators        301
 /Roster        /#creators        301
 /results       /#results         301
 /Results       /#results         301
-/journal       /#journal         301
-/Journal       /#journal         301
+/Journal       /journal/         301
 /about         /#about           301
 /About         /#about           301
 /faq           /#faq-h           301
@@ -33,5 +31,5 @@
 /apply/        /#apply           301
 /contact/      /#contact         301
 
-# Catch-all 404 — explicit so the static host doesn't fall back to 200 on /index
-/*             /404.html         404
+# Unknown paths use the top-level 404.html provided by the static host.
+# Cloudflare Pages does not support status-404 rewrites in this file.

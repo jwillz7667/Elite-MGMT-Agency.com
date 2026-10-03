@@ -4,11 +4,11 @@
 # =============================================================================
 
 [build]
-  publish    = "."
-  command    = ""           # static site — no build step
+  publish    = "site-dist"
+  command    = "npm run build" # validate and package only public website files
 
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "24"
 
 # -----------------------------------------------------------------------------
 # Asset processing
@@ -55,11 +55,6 @@
   status = 301
 
 [[redirects]]
-  from   = "/services"
-  to     = "/#services"
-  status = 301
-
-[[redirects]]
   from   = "/creators"
   to     = "/#creators"
   status = 301
@@ -72,11 +67,6 @@
 [[redirects]]
   from   = "/results"
   to     = "/#results"
-  status = 301
-
-[[redirects]]
-  from   = "/journal"
-  to     = "/#journal"
   status = 301
 
 [[redirects]]
@@ -94,9 +84,9 @@
     X-Frame-Options                 = "DENY"
     X-XSS-Protection                = "0"
     Referrer-Policy                 = "strict-origin-when-cross-origin"
-    Permissions-Policy              = "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()"
+    Permissions-Policy              = "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
     Strict-Transport-Security       = "max-age=63072000; includeSubDomains; preload"
-    Content-Security-Policy         = "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self'; manifest-src 'self'; media-src 'self'; worker-src 'self' blob:; upgrade-insecure-requests"
+    Content-Security-Policy         = "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob:; connect-src 'self'; manifest-src 'self'; media-src 'self'; worker-src 'self' blob:; upgrade-insecure-requests"
     Cross-Origin-Opener-Policy      = "same-origin"
     Cross-Origin-Resource-Policy    = "same-origin"
     X-DNS-Prefetch-Control          = "on"
@@ -105,7 +95,7 @@
 [[headers]]
   for = "/assets/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
   for = "/favicon.ico"

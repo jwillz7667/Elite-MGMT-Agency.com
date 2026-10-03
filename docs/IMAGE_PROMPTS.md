@@ -63,20 +63,20 @@ Master prompt sheet for generating every photographic asset used on
 Reference these every time. The strength of the site comes from the imagery
 all reading as one collection.
 
-| Token | Value |
-|---|---|
-| Mood | Editorial luxury, confident, after-hours, NYC SoHo |
-| Era | Contemporary 2026, timeless rather than trend-driven |
-| Palette (primary) | Near-black `#0A0A0A`, muted gold `#D4AF37`, deep forest green `#1B5E20` |
-| Palette (skin) | Warm, natural, range of skin tones — never blown-out or filtered |
-| Lighting (signature) | Single-source soft window light or a low-key three-point setup with a strong rim from the back-right; deep, controlled shadows; never harsh |
-| Wardrobe direction | Slip dresses in silk satin, tailored trousers, fine knitwear, sculpted blazers, vintage gold jewelry, never logo-heavy |
-| Hair | Glossy, slightly undone, no aggressive editorial sculpting |
-| Makeup | Skin-finish, neutral matte lip or sheer wine, no heavy contour |
-| Camera reference | Hasselblad H6D-100c, 80mm, f/2.8, ISO 200 — or Mamiya RZ67 on Portra 800 for warmer film looks |
-| Output detail level | Skin texture preserved, fabric grain visible, jewelry catches light, ultra-high detail, photographic realism |
-| Style references | Annie Leibovitz portraiture, Jamie Hawkesworth editorial light, Solve Sundsbo luxury, Inez & Vinoodh restraint |
-| Anti-references (mood) | Influencer ring-light, beauty filter, oversaturated, hard flash, EDM glamour |
+| Token                  | Value                                                                                                                                       |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| Mood                   | Editorial luxury, confident, after-hours, NYC SoHo                                                                                          |
+| Era                    | Contemporary 2026, timeless rather than trend-driven                                                                                        |
+| Palette (primary)      | Near-black `#0A0A0A`, muted gold `#D4AF37`, deep forest green `#1B5E20`                                                                     |
+| Palette (skin)         | Warm, natural, range of skin tones — never blown-out or filtered                                                                            |
+| Lighting (signature)   | Single-source soft window light or a low-key three-point setup with a strong rim from the back-right; deep, controlled shadows; never harsh |
+| Wardrobe direction     | Slip dresses in silk satin, tailored trousers, fine knitwear, sculpted blazers, vintage gold jewelry, never logo-heavy                      |
+| Hair                   | Glossy, slightly undone, no aggressive editorial sculpting                                                                                  |
+| Makeup                 | Skin-finish, neutral matte lip or sheer wine, no heavy contour                                                                              |
+| Camera reference       | Hasselblad H6D-100c, 80mm, f/2.8, ISO 200 — or Mamiya RZ67 on Portra 800 for warmer film looks                                              |
+| Output detail level    | Skin texture preserved, fabric grain visible, jewelry catches light, ultra-high detail, photographic realism                                |
+| Style references       | Annie Leibovitz portraiture, Jamie Hawkesworth editorial light, Solve Sundsbo luxury, Inez & Vinoodh restraint                              |
+| Anti-references (mood) | Influencer ring-light, beauty filter, oversaturated, hard flash, EDM glamour                                                                |
 
 > **Casting requirement.** Subjects are adult women (clearly 21–28, sweet
 > spot 22–24), conventionally striking — the kind of face and figure that
@@ -107,16 +107,16 @@ Avoid trailing tag-style keywords. Compose grammatical sentences.
 
 ## Aspect ratio reference
 
-| Use | Ratio | Output dim (master) | Final widths used on site |
-|---|---|---|---|
-| Hero portrait (Ava) | 5:4 portrait → `4:5` | 1280×1600 | 480 / 768 / 1200 / 1600 |
-| Hero portrait (small crops) | 5:4 portrait → `4:5` | derived | 480 / 768 |
-| Hero landscape crop (Ava reuse) | 4:3 → `4:3` | derived from master | 768 |
-| Glamour portrait (Noor) | 6:7 portrait → `4:5` (then crop) | 1200×1400 | 480 / 768 / 1200 |
-| Fitness portrait (Camila) | 16:21.93 portrait → `3:4` (then crop) | 1200×1645 | 480 / 768 / 1200 |
-| Retreat landscape | 16:9 | 2400×1350 | 800 / 1200 / 1600 / 2400 |
-| OG default | 1.91:1 → `16:9` (then crop) | 2400×1260 | 1200×630 final |
-| OG square | 1:1 | 1600×1600 | 1200×1200 final |
+| Use                             | Ratio                                 | Output dim (master) | Final widths used on site |
+| ------------------------------- | ------------------------------------- | ------------------- | ------------------------- |
+| Hero portrait (Ava)             | 5:4 portrait → `4:5`                  | 1280×1600           | 480 / 768 / 1200 / 1600   |
+| Hero portrait (small crops)     | 5:4 portrait → `4:5`                  | derived             | 480 / 768                 |
+| Hero landscape crop (Ava reuse) | 4:3 → `4:3`                           | derived from master | 768                       |
+| Glamour portrait (Noor)         | 6:7 portrait → `4:5` (then crop)      | 1200×1400           | 480 / 768 / 1200          |
+| Fitness portrait (Camila)       | 16:21.93 portrait → `3:4` (then crop) | 1200×1645           | 480 / 768 / 1200          |
+| Retreat landscape               | 16:9                                  | 2400×1350           | 800 / 1200 / 1600 / 2400  |
+| OG default                      | 1.91:1 → `16:9` (then crop)           | 2400×1260           | 1200×630 final            |
+| OG square                       | 1:1                                   | 1600×1600           | 1200×1200 final           |
 
 Generate at the largest size in column 3, then downscale with a Lanczos
 filter at format-conversion time.
@@ -125,15 +125,15 @@ filter at format-conversion time.
 
 ## Image specs index
 
-| # | Output file(s) | Final dim | Alt text in HTML |
-|---|---|---|---|
-| 01 | `assets/img/hero/ava-portrait-{480,768,1200,1600}.{avif,webp,jpg}` | 1200×1560 hero | "Ava — Elite MGMT roster creator on the Lifestyle track…" |
-| 02 | `assets/img/creators/glamour-noor-{480,768,1200}.{avif,webp,png}` | 1200×1400 | "Noor D. — Glamour creator on the Elite MGMT roster" |
-| 03 | `assets/img/creators/fitness-camila-{480,768,1200}.{avif,webp,png}` | 1200×1645 | "Camila R. — Fitness creator on the Elite MGMT roster" |
-| 04 | `assets/img/hero/retreat-{800,1200,1600,2400}.{avif,webp,jpg}` | 2400×1350 | "Top creators on the annual Elite MGMT roster retreat, 2026" |
-| 05 | `assets/img/social/og-default.{jpg,webp}` | 1200×630 | Social-card meta |
-| 06 | `assets/img/social/og-square.jpg` | 1200×1200 | Twitter card |
-| 07 | `assets/img/logo/{favicon.svg, logo-*.png, logo-*.webp}` | vector + raster | Logo / brand mark |
+| #   | Output file(s)                                                      | Final dim       | Alt text in HTML                                             |
+| --- | ------------------------------------------------------------------- | --------------- | ------------------------------------------------------------ |
+| 01  | `assets/img/hero/ava-portrait-{480,768,1200,1600}.{avif,webp,jpg}`  | 1200×1560 hero  | "Ava — Elite MGMT roster creator on the Lifestyle track…"    |
+| 02  | `assets/img/creators/glamour-noor-{480,768,1200}.{avif,webp,png}`   | 1200×1400       | "Noor D. — Glamour creator on the Elite MGMT roster"         |
+| 03  | `assets/img/creators/fitness-camila-{480,768,1200}.{avif,webp,png}` | 1200×1645       | "Camila R. — Fitness creator on the Elite MGMT roster"       |
+| 04  | `assets/img/hero/retreat-{800,1200,1600,2400}.{avif,webp,jpg}`      | 2400×1350       | "Top creators on the annual Elite MGMT roster retreat, 2026" |
+| 05  | `assets/img/social/og-default.{jpg,webp}`                           | 1200×630        | Social-card meta                                             |
+| 06  | `assets/img/social/og-square.jpg`                                   | 1200×1200       | Twitter card                                                 |
+| 07  | `assets/img/logo/{favicon.svg, logo-*.png, logo-*.webp}`            | vector + raster | Logo / brand mark                                            |
 
 ---
 
@@ -495,7 +495,7 @@ and survive aggressive compression.
 ### Subject brief
 
 Half hero portrait, half identity card. The viewer needs to know in one
-glance: *this is an elite creator-management agency, by and for women*.
+glance: _this is an elite creator-management agency, by and for women_.
 
 ### Prompt
 
@@ -608,6 +608,7 @@ horizontal triptych.
 ```
 
 > **Final requirements for the production logomark:**
+>
 > - Square canvas, 1:1.
 > - Single colour fill, no gradient, no inner shadow.
 > - Optical correction so the mark reads centered at 32×32px on a tab.
@@ -642,7 +643,7 @@ list-style negative prompts), but as a creative-direction checklist:
   text. **Luxury-house signatures are allowed and on-brand** —
   Louis Vuitton monogram canvas, Hermès orange box / leather grain,
   Cartier Love hardware, Van Cleef Alhambra, Bulgari Serpenti — these
-  are *wealth signals*, the whole point of those frames.
+  are _wealth signals_, the whole point of those frames.
 - No artificial-looking jewelry, no plastic gemstones, no novelty
   accessories. Real-looking diamonds, gold, platinum only.
 - No more than one strong rim light direction per image (keeps the brand

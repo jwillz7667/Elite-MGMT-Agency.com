@@ -1,295 +1,85 @@
-# Elite MGMT Agency — Web
+# Elite MGMT Agency website
 
-[![License: Proprietary](https://img.shields.io/badge/license-proprietary-pink.svg)](./LICENSE)
-[![Node](https://img.shields.io/badge/node-%E2%89%A520.x-success.svg)](./.nvmrc)
-[![Status](https://img.shields.io/badge/status-production-success.svg)](#deployment)
-[![Owner](https://img.shields.io/badge/owner-Viral%20Ventures%20LLC-black.svg)](https://viral-ventures-llc.com)
+Static HTML, CSS and JavaScript for Elite MGMT Agency. The repository contains the homepage, service pages, creator-management landing pages, journal, company pages, legal pages, a portal contact page and a custom 404 page.
 
-The production website for **Elite MGMT Agency** — a women-only creator
-management agency for OnlyFans, Fansly, and the broader subscription economy.
+Intended public domain: [elite-mgmt-agency.com](https://elite-mgmt-agency.com). This is a configured URL in the source, not confirmation that a deployment is reachable.
 
-Live: **[elite-mgmt-agency.com](https://elite-mgmt-agency.com)**
+## Current deployment status
 
-> **Proprietary software.** © 2019–2026 Viral Ventures LLC, Maple Grove, MN.
-> All rights reserved. See [LICENSE](./LICENSE).
+On October 2, 2026, a DNS lookup for `elite-mgmt-agency.com` returned `NXDOMAIN`. GitHub repository secrets and variables, and the existing `Production` environment's secrets and variables, were empty. The Cloudflare workflow requires `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_PAGES_PROJECT`; those names were absent from the inspected scopes. Configure the owner’s hosting account and domain before expecting the production URL to work. This audit did not deploy the site or change DNS.
 
----
+## How the site works
 
-## Table of contents
+- Pages are authored directly in HTML. Styling lives in [assets/css/styles.css](./assets/css/styles.css), and browser behavior in [assets/js/app.js](./assets/js/app.js). There is no application framework or server runtime.
+- Typography uses the native Apple system font on Apple devices, with self-hosted Inter and platform fallbacks elsewhere. Apple supplies SF Pro through its system font stack; no SF Pro files are redistributed. Inter's license is included in [assets/fonts/LICENSE.txt](./assets/fonts/LICENSE.txt), and its English-language subset is documented in [docs/TYPOGRAPHY.md](./docs/TYPOGRAPHY.md).
+- Images use responsive sources and explicit dimensions. The image briefs and WaveSpeed generation workflow are documented in [docs/EDITORIAL_IMAGES.md](./docs/EDITORIAL_IMAGES.md). Ten distinct images were generated with the authorized WaveSpeed account using Seedream V5.0 Pro and integrated as responsive AVIF, WebP and JPEG files. The new fictional models were prompted as clearly adult age 22. Future generation needs the owner’s API key and credits. Illustrative AI imagery must not be presented as real clients or testimonial speakers.
+- Application and journal forms prepare email drafts. They do not send messages, submit to an API, enroll subscribers or confirm delivery. Users review and send the draft in their email app; application text can also be copied. Form entries are not saved as browser drafts.
+- The portal is a contact page with `noindex` metadata, not an implemented authenticated dashboard.
+- Cookie preferences, navigation, reduced-motion handling and form validation run in the browser. See the actual [privacy](./privacy/index.html) and [cookie](./cookies/index.html) pages for user-facing details.
 
-- [Stack](#stack)
-- [Repository structure](#repository-structure)
-- [Prerequisites](#prerequisites)
-- [Local development](#local-development)
-- [Scripts](#scripts)
-- [Quality bar](#quality-bar)
-- [SEO architecture](#seo-architecture)
-- [Security](#security)
-- [Deployment](#deployment)
-- [Browser support](#browser-support)
-- [Performance budget](#performance-budget)
-- [Contributing](#contributing)
-- [License](#license)
+## Develop locally
 
----
-
-## Stack
-
-| Layer            | Choice                                                       |
-| ---------------- | ------------------------------------------------------------ |
-| Markup           | Static HTML5, hand-authored                                  |
-| Styling          | Vanilla CSS (custom properties, container queries, `clamp`)  |
-| Behavior         | Vanilla JavaScript, IIFE-scoped, defer-loaded                |
-| Fonts            | Instrument Serif, Geist, Geist Mono (Google Fonts CDN)       |
-| Images           | AVIF / WebP / JPG (or PNG for alpha) with responsive `srcset`|
-| Schema           | JSON-LD multi-graph (`Organization`, `ProfessionalService`, `WebSite`, `WebPage`, `BreadcrumbList`, `FAQPage`) |
-| Hosting target   | Cloudflare Pages (primary) · Netlify · Vercel                |
-| CDN              | Cloudflare (origin) · platform-managed edge cache            |
-| Form backend     | To be wired (`/api/apply`, `/api/subscribe`) — graceful fallback to email |
-
-No build step. No bundler. No framework. The site is checked in as it ships.
-
-## Repository structure
-
-```
-.
-├── index.html                       # Homepage — single-page application
-├── 404.html                         # On-brand not-found page
-│
-├── assets/
-│   ├── css/styles.css               # All non-critical styles
-│   ├── js/app.js                    # All client behavior (IIFE, defer-loaded)
-│   └── img/
-│       ├── hero/                    # AVIF + WebP + JPG, 4 widths each
-│       ├── creators/                # AVIF + WebP + PNG (alpha-preserved)
-│       ├── logo/                    # 10 sizes for favicon/manifest/Apple-touch
-│       └── social/                  # OpenGraph 1200×630 + square 1200×1200
-│
-├── .well-known/
-│   └── security.txt                 # RFC 9116 disclosure contact
-│
-├── robots.txt                       # Crawler policy + sitemap pointer
-├── sitemap.xml                      # XML sitemap w/ image extensions
-├── manifest.webmanifest             # PWA manifest
-├── browserconfig.xml                # Windows tile configuration
-├── humans.txt                       # Team credits
-├── llms.txt                         # Canonical context for AI crawlers
-├── favicon.ico                      # Multi-size ICO fallback
-│
-├── _headers                         # Cloudflare Pages / Netlify HTTP headers
-├── _redirects                       # Cloudflare Pages / Netlify URL redirects
-├── netlify.toml                     # Netlify-specific config
-├── vercel.json                      # Vercel-specific config
-│
-├── .github/                         # CI/CD, code owners, issue + PR templates
-├── .vscode/                         # Editor recommendations (committed)
-│
-├── LICENSE                          # Proprietary, Viral Ventures LLC
-├── README.md                        # ← this file
-├── CONTRIBUTING.md                  # Internal contribution guide
-├── CHANGELOG.md                     # Semver-tagged changes
-├── SECURITY.md                      # Vulnerability disclosure policy
-│
-├── package.json                     # Dev scripts only — no runtime deps shipped
-├── .gitignore                       # Standard ignores
-├── .gitattributes                   # Line endings + binary detection
-├── .editorconfig                    # Cross-editor formatting baseline
-├── .nvmrc                           # Pinned Node version for tooling
-│
-├── .prettierrc.json                 # Format configuration
-├── .prettierignore                  # Format exclusions
-├── .stylelintrc.json                # CSS lint rules
-├── .htmlvalidate.json               # HTML validation rules
-├── eslint.config.mjs                # Flat-config ESLint
-└── .lighthouserc.json               # Lighthouse CI thresholds
-```
-
-## Prerequisites
-
-- **Node.js** ≥ 20 (LTS). Use the version pinned in [`.nvmrc`](./.nvmrc):
-
-  ```sh
-  nvm use
-  ```
-
-- **npm** ≥ 10. Yarn / pnpm work too, but the lockfile is npm.
-
-That's it. The runtime needs nothing — it's a static site. Node is only for
-development tooling (linters, formatters, local server, Lighthouse CI).
-
-## Local development
+Use Node.js 24 LTS (the version in [.nvmrc](./.nvmrc)) and npm 11 or newer, then install the locked development dependencies. The package manager metadata records npm 11.12.1, which was used to maintain this lockfile:
 
 ```sh
-git clone git@github.com:jwillz7667/Elite-MGMT-Agency.com.git
-cd Elite-MGMT-Agency.com
-nvm use
-npm install
+npm ci
 npm run dev
 ```
 
-The dev server is a strict-mode static file server at
-[`http://localhost:4173`](http://localhost:4173). No live-reload — refresh
-manually so you see exactly what production serves.
+Open [localhost:4173](http://localhost:4173). `dev` first validates and packages the website, then serves `site-dist/`. Restart it after source changes to rebuild the staged files. The server has no SPA fallback: missing routes remain missing routes. `npm run preview` binds the same packaged website to all network interfaces for device testing.
 
-## Scripts
+The website itself has no runtime npm dependencies. Node and npm are development and packaging tools.
 
-```sh
-npm run dev            # Static server at :4173 (production-like)
-npm run preview        # Same as dev, but binds 0.0.0.0 for LAN device testing
-
-npm run format         # Prettier — write
-npm run format:check   # Prettier — verify (CI gate)
-
-npm run lint           # Run all linters in order: HTML → CSS → JS
-npm run lint:html      # html-validate against `.htmlvalidate.json`
-npm run lint:css       # stylelint against `.stylelintrc.json`
-npm run lint:js        # eslint against `eslint.config.mjs`
-
-npm run validate       # Structural validators (sitemap, JSON-LD, manifest)
-npm run audit:a11y     # Pa11y axe-core run against the local server
-npm run audit:perf     # Lighthouse CI against `.lighthouserc.json` budgets
-npm run audit          # All of the above (CI runs this on every PR)
-
-npm run check          # format:check + lint + validate — pre-commit gate
-```
-
-## Quality bar
-
-A change merges only if **all** of these pass:
-
-| Gate          | Tool             | Threshold                                          |
-| ------------- | ---------------- | -------------------------------------------------- |
-| Format        | Prettier         | Exact match (`format:check` is non-rewriting)      |
-| HTML          | html-validate    | Zero errors, zero warnings                         |
-| CSS           | stylelint        | Zero errors                                        |
-| JS            | ESLint           | Zero errors, ≤ 0 warnings                          |
-| Accessibility | Pa11y axe-core   | Zero WCAG 2.2 AA violations                        |
-| Performance   | Lighthouse CI    | LCP ≤ 1.8s · CLS ≤ 0.05 · TBT ≤ 100ms · score ≥ 95 |
-| Schema        | Custom validator | All JSON-LD blocks parse and conform               |
-
-CI runs the same matrix in `.github/workflows/ci.yml`.
-
-## SEO architecture
-
-The site is built to rank top-5 for high-intent commercial keywords. The
-mechanics:
-
-- **Single primary `<h1>`** with a women-creator-agency keyword pattern; one
-  `<h2>` per section, all referenced by `aria-labelledby` of their section.
-- **Multi-graph JSON-LD** (`Organization` → `ProfessionalService` → `WebSite` →
-  `WebPage` → `BreadcrumbList` → `FAQPage`), deduplicated via `@id`. The
-  Organization node also declares `parentOrganization` to Viral Ventures LLC.
-- **NYC local-SEO signals** (`geo.region`, `geo.position`, `ICBM`,
-  `PostalAddress`) — local + city pages can extend this without a refactor.
-- **`hreflang` triplet** (`en`, `en-us`, `x-default`) pointing to the same
-  canonical to avoid cross-region cannibalization.
-- **`<link rel="preload"`** for the LCP image with `imagesrcset` so modern UAs
-  pull only the size they need.
-- **`<picture>` everywhere** with AVIF → WebP → JPG/PNG fallback, sized via
-  `srcset` + `sizes` to a real device-width.
-- **`llms.txt`** at root provides canonical, accurate context to LLM crawlers
-  that respect the new convention.
-- **Image sitemap** for Google Image indexing of roster portraits.
-- **CSP / HSTS / Permissions-Policy / Referrer-Policy** are wired in `_headers`
-  + `netlify.toml` + `vercel.json` so security headers ship from every host.
-
-## Security
-
-- Reporting: **security@elite-mgmt-agency.com** (or
-  **security@viral-ventures-llc.com**).
-- Policy: [`SECURITY.md`](./SECURITY.md) · [`/.well-known/security.txt`](./.well-known/security.txt) (RFC 9116).
-- Headers shipped per request:
-  - HSTS 2-year preload-ready
-  - CSP locked to `'self'` for default/script/img/connect
-  - `Permissions-Policy` denies camera, microphone, geolocation, payment,
-    USB, FLoC, etc.
-  - `Referrer-Policy: strict-origin-when-cross-origin`
-  - `X-Frame-Options: DENY` · `frame-ancestors 'none'`
-  - COOP / CORP same-origin
-- Form posts include a **honeypot field** + 15s timeout + graceful email fallback.
-- Dependencies: zero production dependencies; dev deps governed by Dependabot
-  ([`.github/dependabot.yml`](./.github/dependabot.yml)).
-
-## Deployment
-
-The site deploys as a static directory. **No build step** — the repo *is* the
-artifact.
-
-### Cloudflare Pages (primary)
-
-1. Connect the GitHub repo to Pages.
-2. Build command: *(empty)*
-3. Build output: *(empty — uses repo root)*
-4. Production branch: `main`
-5. Custom domain: `elite-mgmt-agency.com`.
-
-The [`_headers`](./_headers) and [`_redirects`](./_redirects) files are picked
-up automatically.
-
-### Netlify
-
-`netlify deploy --dir=. --prod` — or use the GUI with [`netlify.toml`](./netlify.toml).
-
-### Vercel
-
-`vercel --prod` — picks up [`vercel.json`](./vercel.json).
-
-### Manual smoke test before promoting
+## Check and package changes
 
 ```sh
-npm run audit         # Local CI suite
-curl -I https://elite-mgmt-agency.com   # Verify HSTS, CSP, cache headers
+npm run format:check
+npm run lint
+npm run validate
+npm run build
 ```
 
-## Browser support
+`npm run check` combines formatting, linting, validation and packaging. HTML linting covers the authored page directories. The structural validator checks all source HTML pages, local routes and fragments, queried assets, responsive image candidates, canonical/social/schema URLs, sitemap membership, manifest references and the security disclosure file.
 
-Targets the **last 2 versions** of Chrome, Safari, Firefox, and Edge across
-desktop and mobile. iOS Safari 15+, Android Chrome on Android 10+.
+`npm run build` creates `site-dist/` using [scripts/package-site.mjs](./scripts/package-site.mjs). The packager validates the source, rebuilds the output from an explicit public-file allowlist, copies approved asset types and includes the font license. CSS and JavaScript are minified in the staged directory with pinned esbuild; authored source files and public asset paths remain unchanged. JavaScript targets ES2020, with CSS targeting Chrome/Edge/Firefox 100 and Safari 15 or newer. No source maps or unminified companion files are published. A validation or minification error stops packaging before the artifact becomes available. It rejects asset symlinks and unexpected asset types. It excludes repository documentation, source-generation prompts, credential files, dependency manifests, development scripts, audit output and the private image-generation cache. When adding a public route, update the packager's page list and the HTML lint directory list as appropriate.
 
-Older browsers degrade gracefully:
+Additional tools:
 
-- AVIF unsupported → WebP → JPG/PNG via `<picture>`.
-- IntersectionObserver missing → reveals show immediately.
-- `inert` missing → focus-trap continues without main-content inerting.
+```sh
+npm run format         # Format authored source
+npm run audit:a11y     # Pa11y; requires the local server on port 4173
+npm run audit:perf     # Package, then run Lighthouse CI on site-dist
+npm run clean          # Remove generated site and audit/cache output
+```
 
-## Performance budget
+The [CI workflow](./.github/workflows/ci.yml) runs formatting, HTML/CSS/JS linting, structural validation, public packaging, Pa11y and Lighthouse checks. Audit targets and budgets are defined in [.pa11yci.json](./.pa11yci.json) and [.lighthouserc.json](./.lighthouserc.json). Configured budgets are targets, not measured performance claims; use the generated reports to assess a particular commit. Local static-server audits do not verify CDN headers, DNS or production email delivery. Axe results that require manual review are classified as warnings using Pa11y’s `levelCapWhenNeedsReview`; confirmed violations still fail CI, and contrast rules remain enabled. Review warning-inclusive reports and the visible text over imagery after every image or styling change. The 404 has separate Lighthouse assertions because it intentionally uses `noindex`; its accessibility and performance budgets remain enforced.
 
-| Metric                 | Budget   | Current        |
-| ---------------------- | -------- | -------------- |
-| LCP (4G median)        | ≤ 1.8 s  | ~1.2 s         |
-| CLS                    | ≤ 0.05   | ~0             |
-| TBT                    | ≤ 100 ms | ~10 ms         |
-| Largest JS (gzipped)   | ≤ 20 KB  | 5.6 KB         |
-| Largest CSS (gzipped)  | ≤ 20 KB  | 9.6 KB         |
-| LCP image (AVIF)       | ≤ 50 KB  | 28 KB          |
+## SEO and public content
 
-Enforced by [`.lighthouserc.json`](./.lighthouserc.json) in CI.
+Each indexable page has its own canonical URL, title, description and structured data. [sitemap.xml](./sitemap.xml) lists the published canonical routes and image URLs; [robots.txt](./robots.txt) points to that sitemap. Directory-page canonicals use trailing slashes. The portal and 404 are excluded from indexing. Sitemap dates should reflect known significant content changes; do not add blanket dates or unsupported business claims.
 
-## Contributing
+The audit repairs site structure and behavior. Existing business statistics, roster identities, testimonial quotations, office details and legal assertions still require verification by the owner before publication. Adding imagery does not establish those claims. Search rankings and rich-result eligibility are not guaranteed by these files.
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md). In short:
+## Deploy the public artifact
 
-1. Branch from `main` with `feat/<slug>`, `fix/<slug>`, or `chore/<slug>`.
-2. Write a [Conventional Commit](https://www.conventionalcommits.org/).
-3. Open a PR with the template filled in.
-4. CI must be green, and the PR needs at least one CODEOWNERS approval.
+The production [deployment workflow](./.github/workflows/deploy.yml) targets Cloudflare Pages. It follows successful `ci` runs for trusted pushes to `main`, checks that the exact commit is still current `main`, and uploads only `site-dist/`. A manual workflow dispatch also requires a successful completed main CI run for that exact commit. The separate CI gate prevents unchecked or obsolete commits from being published by this workflow.
 
-Code style is enforced — let Prettier and the linters do the talking.
+Configure these in GitHub repository settings or the `Production` environment:
 
-## License
+| Setting                    | Kind     | Purpose                                                       |
+| -------------------------- | -------- | ------------------------------------------------------------- |
+| `CLOUDFLARE_API_TOKEN`     | Secret   | Cloudflare token authorized to edit the owner's Pages project |
+| `CLOUDFLARE_ACCOUNT_ID`    | Secret   | Account containing that Pages project                         |
+| `CLOUDFLARE_PAGES_PROJECT` | Variable | Existing Cloudflare Pages project name                        |
 
-[Proprietary](./LICENSE) — © 2019–2026 Viral Ventures LLC, Maple Grove, MN.
-All rights reserved.
+The domain must also be configured in the owner's hosting account and DNS. [_headers](./_headers) and [_redirects](./_redirects) are included in the staged artifact for Cloudflare Pages. Unknown paths use the top-level `404.html`; there is no catch-all rewrite to the homepage. Stable asset filenames revalidate rather than using a year-long immutable browser cache.
 
-The Elite MGMT name, the Elite MGMT word mark, the Viral Ventures LLC name,
-and all related visual identity assets are trademarks of Viral Ventures LLC.
-Unauthorized use is prohibited.
+If choosing Netlify or Vercel instead, configure the host to build with `npm run build` and publish `site-dist/`, applying the corresponding [Netlify](./netlify.toml) or [Vercel](./vercel.json) configuration. **Never upload or serve the repository root as the public artifact.** The local `serve` utility does not apply platform headers or redirects, so verify those on a hosting preview before promotion.
 
----
+## Security and licensing
 
-<div align="center">
+Report vulnerabilities using the contact in [SECURITY.md](./SECURITY.md) and [.well-known/security.txt](./.well-known/security.txt). Site headers restrict embedding, browser capabilities and resource origins. Inline styles and inline script permissions remain explicit CSP trade-offs; they are not a claim that an independent security audit has passed.
 
-Built and maintained by **[Viral Ventures LLC](https://viral-ventures-llc.com)**
-· Maple Grove, MN
+Keep WaveSpeed credentials in the invoking environment. Do not commit keys or place them in browser JavaScript. Generated masters and the job registry are development materials and must not be published through the static artifact.
 
-</div>
+The website is proprietary; see [LICENSE](./LICENSE). Inter retains its included open-source license. Contribution guidance lives in [CONTRIBUTING.md](./CONTRIBUTING.md).
